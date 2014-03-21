@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1395005099 source:d:\nick\documents\college\sophomore\fund2final\sdltest\try.c
+	"SDL/SDL.h"
+
+1395030014 source:d:\nick\documents\college\sophomore\fund2final\sdltest\capp.cpp
+	"CApp.h"
+
+1395086072 d:\nick\documents\college\sophomore\fund2final\sdltest\capp.h
+	"SDL/SDL.h"
+	"CEvent.h"
+	"CSurface.h"
+
+1395030030 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oncleanup.cpp
+	"CApp.h"
+
+1395086098 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onevent.cpp
+	"CApp.h"
+
+1395030184 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oninit.cpp
+	"CApp.h"
+
+1395005504 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onloop.cpp
+	"CApp.h"
+
+1395031356 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onrender.cpp
+	"CApp.h"
+
+1395030857 d:\nick\documents\college\sophomore\fund2final\sdltest\csurface.h
+	"SDL/SDL.h"
+
+1395030680 source:d:\nick\documents\college\sophomore\fund2final\sdltest\csurface.cpp
+	"CSurface.h"
+
+1395085530 d:\nick\documents\college\sophomore\fund2final\sdltest\cevent.h
+	"SDL/SDL.h"
+
+1395085582 source:d:\nick\documents\college\sophomore\fund2final\sdltest\cevent.cpp
+	"CEvent.h"
+
