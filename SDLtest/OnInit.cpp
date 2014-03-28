@@ -9,7 +9,7 @@ bool CApp::OnInit() {
         return false;
     }
 
-    if((Surf_Test = CSurface::OnLoad("myimage.bmp")) == NULL) {
+    if((Surf_Test = CSurface::OnLoad("Park_img.bmp")) == NULL) {
         return false;
     }
 

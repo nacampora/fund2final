@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1395624050 source:d:\nick\documents\college\sophomore\fund2final\tictactoe\capp.cpp
+	"CApp.h"
+
+1395625329 d:\nick\documents\college\sophomore\fund2final\tictactoe\capp.h
+	"SDL/SDL.h"
+	"CEvent.h"
+	"CSurface.h"
+
+1395085530 d:\nick\documents\college\sophomore\fund2final\tictactoe\cevent.h
+	"SDL/SDL.h"
+
+1395624512 d:\nick\documents\college\sophomore\fund2final\tictactoe\csurface.h
+	"SDL/SDL.h"
+
+1395085582 source:d:\nick\documents\college\sophomore\fund2final\tictactoe\cevent.cpp
+	"CEvent.h"
+
+1395030680 source:d:\nick\documents\college\sophomore\fund2final\tictactoe\csurface.cpp
+	"CSurface.h"
+
+1395624069 source:d:\nick\documents\college\sophomore\fund2final\tictactoe\oncleanup.cpp
+	"CApp.h"
+
+1395086098 source:d:\nick\documents\college\sophomore\fund2final\tictactoe\onevent.cpp
+	"CApp.h"
+
+1395624084 source:d:\nick\documents\college\sophomore\fund2final\tictactoe\oninit.cpp
+	"CApp.h"
+
+1395005504 source:d:\nick\documents\college\sophomore\fund2final\tictactoe\onloop.cpp
+	"CApp.h"
+
+1395624118 source:d:\nick\documents\college\sophomore\fund2final\tictactoe\onrender.cpp
+	"CApp.h"
+

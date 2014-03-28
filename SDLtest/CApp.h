@@ -6,6 +6,8 @@
 #include "CEvent.h"
 #include "CSurface.h"
 
+#include "hfiles/Park.h"
+
 class CApp : public CEvent {
     private:
         bool            Running;
@@ -20,6 +22,8 @@ class CApp : public CEvent {
         int OnExecute();
 
     public:
+        Park Pmap;
+
         bool OnInit();
 
         void OnEvent(SDL_Event* Event);
