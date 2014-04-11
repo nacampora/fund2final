@@ -1,19 +1,20 @@
 #ifndef RIDE_H
 #define RIDE_H
-
+#include<iostream>
+#include<string.h>
 using namespace std;
-class ride
+
+class Ride
 {
     public:
 
-        ride(int p=0,int s=0,string f="ride_img.bmp");
+        Ride(string f="ride_img.png");
         void enter();
         void exit();
+        string get_img();
 
     private:
 
-            int popularity;
-            int scariness;
             string ride_img;
 };
 #endif

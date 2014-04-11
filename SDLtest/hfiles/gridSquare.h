@@ -2,16 +2,16 @@
 #define GRIDSQUARE_H
 
 #include "building.h"
-#include<string.h>
+#include<string>
+using namespace std;
 
-class gridSquare
+class GridSquare
 {
     public:
-        gridSquare(int p=0);
-        building build;
-        double purchase();
+        GridSquare();
+        Building build;
         void display();
-        string get_property();
+
 
     private:
 

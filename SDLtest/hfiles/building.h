@@ -6,26 +6,37 @@
 #include"vendor.h"
 #include "ride.h"
 
-class building
+class Building
 {
     public:
-        building();
-        shop sBuild;
-        bRoom bBuild;
-        vendor vBuild;
-        ride rBuild;
+        Building(int p=0);
+
+        Shop sBuild;
+        BRoom bBuild;
+        Vendor vBuild;
+        Ride rBuild;
 
         void display();
-    private:
-        int property;
-        enum
-        {
-            enum_grass=0,
-            enum_path,
-            enum_ride,
-            enum_shop,
-            enum_bRoom,
-            enum_vendor
+
+        enum {
+            enum_grassB=0,
+            enum_grassY,
+            enum_pathB,
+            enum_pathY,
+            enum_rideB,
+            enum_rideY,
+            enum_shopB,
+            enum_shopY,
+            enum_bRoomB,
+            enum_bRoomY,
+            enum_vendorB,
+            enum_vendorY
         };
+        void set_property(int);
+        int get_property();
+    private:
+        string file; //temporary variable
+        int property;
+
 };
 #endif

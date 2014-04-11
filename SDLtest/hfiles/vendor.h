@@ -2,15 +2,20 @@
 #define VENDOR_H
 #include<string>
 #include<iostream>
+#include <stdlib.h>
+#include<iostream>
+#include<string.h>
 using namespace std;
-class vendor
+
+class Vendor
 {
     public:
 
-        vendor(int n=0,int l=5,int h=10,int t=10,string f="vendor_img.bmp");
+        Vendor(int n=0,int l=5,int h=10,int t=10,string f="vendor_img.png");
         int random_buy();
         void enter();
         void exit();
+        string get_img();
     private:
         string vendor_img;
         int null_price;

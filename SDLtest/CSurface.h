@@ -2,6 +2,7 @@
     #define _CSURFACE_H_
 
 #include "SDL/SDL.h"
+#include "SDL_image.h"
 
 class CSurface {
     public:

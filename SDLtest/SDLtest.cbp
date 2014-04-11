@@ -14,6 +14,9 @@
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="C:\SDL-1.2.15\SDL_image-1.2.12\lib\x64\SDL_image.lib" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/SDLtest" prefix_auto="1" extension_auto="1" />
@@ -31,6 +34,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="BRoom.cpp" />
+		<Unit filename="Building.cpp" />
 		<Unit filename="CApp.cpp" />
 		<Unit filename="CApp.h" />
 		<Unit filename="CEvent.cpp" />
@@ -42,11 +47,33 @@
 		<Unit filename="OnInit.cpp" />
 		<Unit filename="OnLoop.cpp" />
 		<Unit filename="OnRender.cpp" />
+		<Unit filename="Park.cpp" />
+		<Unit filename="Ride.cpp" />
+		<Unit filename="SDL_image.h" />
+		<Unit filename="Shop.cpp" />
+		<Unit filename="Vendor.cpp" />
+		<Unit filename="gridSquare.cpp" />
+		<Unit filename="hfiles/Park.h" />
+		<Unit filename="hfiles/bRoom.h" />
+		<Unit filename="hfiles/building.h" />
+		<Unit filename="hfiles/gridSquare.h" />
+		<Unit filename="hfiles/ride.h" />
+		<Unit filename="hfiles/shop.h" />
+		<Unit filename="hfiles/vendor.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
 			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

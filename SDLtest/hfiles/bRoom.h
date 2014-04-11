@@ -1,12 +1,16 @@
 #ifndef BROOM_H
 #define BROOM_H
+#include<iostream>
+#include<string.h>
+using namespace std;
 
-class bRoom
+class BRoom
 {
     public:
-        bRoom(int t=10,string b="bRoom_img.bmp");
+        BRoom(int t=10,string b="bRoom_img.png");
         void enter();
         void exit();
+        string get_img();
 
         private:
 

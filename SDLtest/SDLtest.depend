@@ -2,35 +2,38 @@
 1395005099 source:d:\nick\documents\college\sophomore\fund2final\sdltest\try.c
 	"SDL/SDL.h"
 
-1395030014 source:d:\nick\documents\college\sophomore\fund2final\sdltest\capp.cpp
+1397153425 source:d:\nick\documents\college\sophomore\fund2final\sdltest\capp.cpp
 	"CApp.h"
 
-1395944198 d:\nick\documents\college\sophomore\fund2final\sdltest\capp.h
+1397156478 d:\nick\documents\college\sophomore\fund2final\sdltest\capp.h
 	"SDL/SDL.h"
 	"CEvent.h"
 	"CSurface.h"
 	"hfiles/Park.h"
 
-1395030030 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oncleanup.cpp
+1397085468 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oncleanup.cpp
 	"CApp.h"
 
-1395086098 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onevent.cpp
+1397157617 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onevent.cpp
 	"CApp.h"
+	<math.h>
 
-1395937683 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oninit.cpp
+1397153498 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oninit.cpp
 	"CApp.h"
 
 1395005504 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onloop.cpp
 	"CApp.h"
 
-1395937705 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onrender.cpp
+1397158083 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onrender.cpp
 	"CApp.h"
 
-1395030857 d:\nick\documents\college\sophomore\fund2final\sdltest\csurface.h
+1397063994 d:\nick\documents\college\sophomore\fund2final\sdltest\csurface.h
 	"SDL/SDL.h"
+	"SDL_image.h"
 
-1395030680 source:d:\nick\documents\college\sophomore\fund2final\sdltest\csurface.cpp
+1397067518 source:d:\nick\documents\college\sophomore\fund2final\sdltest\csurface.cpp
 	"CSurface.h"
+	"SDL/SDL_image.h"
 
 1395085530 d:\nick\documents\college\sophomore\fund2final\sdltest\cevent.h
 	"SDL/SDL.h"
@@ -38,31 +41,66 @@
 1395085582 source:d:\nick\documents\college\sophomore\fund2final\sdltest\cevent.cpp
 	"CEvent.h"
 
-1395946526 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\park.h
+1397154204 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\park.h
 	<math.h>
 	<vector>
 	<iostream>
-	"gridSquare.h"
-
-1395946326 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\gridsquare.h
 	"building.h"
-	<string.h>
 
-1395946307 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\building.h
+1396399951 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\gridsquare.h
+	"building.h"
+	<string>
+
+1397157417 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\building.h
 	"shop.h"
 	"bRoom.h"
 	"vendor.h"
 	"ride.h"
 
-1395945033 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\shop.h
+1397064415 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\shop.h
 	<iostream>
 	<string.h>
 
-1395945210 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\broom.h
+1397064437 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\broom.h
+	<iostream>
+	<string.h>
 
-1395946218 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\vendor.h
+1397064410 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\vendor.h
 	<string>
 	<iostream>
+	<stdlib.h>
+	<iostream>
+	<string.h>
 
-1395946239 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\ride.h
+1397064423 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\ride.h
+	<iostream>
+	<string.h>
+
+1396400013 source:d:\nick\documents\college\sophomore\fund2final\sdltest\gridsquare.cpp
+	"hfiles\gridSquare.h"
+
+1397157718 source:d:\nick\documents\college\sophomore\fund2final\sdltest\park.cpp
+	"hfiles\Park.h"
+
+1396992946 source:d:\nick\documents\college\sophomore\fund2final\sdltest\broom.cpp
+	"hfiles/bRoom.h"
+
+1397157592 source:d:\nick\documents\college\sophomore\fund2final\sdltest\building.cpp
+	"hfiles\building.h"
+
+1396992742 source:d:\nick\documents\college\sophomore\fund2final\sdltest\ride.cpp
+	"hfiles/ride.h"
+
+1396992916 source:d:\nick\documents\college\sophomore\fund2final\sdltest\shop.cpp
+	"hfiles/shop.h"
+
+1397066371 source:d:\nick\documents\college\sophomore\fund2final\sdltest\vendor.cpp
+	"hfiles/vendor.h"
+	<time.h>
+
+1397066275 d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_image.h
+	"SDL/SDL.h"
+	"SDL/SDL_version.h"
+	"SDL/begin_code.h"
+	"SDL/close_code.h"
 
