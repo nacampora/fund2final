@@ -8,8 +8,8 @@ using namespace std;
 
 #include "TrackPiece.h"
 #define base 15
-#define width 1200
-#define height 600
+#define width 1300
+#define height 650
 double dist(double x1,double y1,double x2,double y2){
 	return sqrt(pow((x2-x1),2)+pow((y2-y1),2));
 }
@@ -21,18 +21,6 @@ TrackPiece::TrackPiece(double x1,double y1,double x2,double y2,int track){
 	trackType=track;
 }
 
-void TrackPiece::fix(){
-/*	double d = dist(startX,startY,endX,endY);
-	int nPieces=(int)(d/base);
-	double ang=asin((startY-endY)/d);
-	if(endX-startX<0){
-		ang=-1*ang+M_PI;
-	}
-	nPieces++;
-	endX=startX+nPieces*base*cos(ang);
-	endY=startY-nPieces*base*sin(ang);
-*/
-}
 
 double TrackPiece::findAngle(){
 	double d= dist(startX,startY,endX,endY);
@@ -82,8 +70,15 @@ void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offset
 		if(offset.x>0 && offset.x<width && offset.y>0 && offset.y < height){
 			SDL_BlitSurface(rotatedImg,NULL,s,&offset);
 		}
-		offset.x=F*base*cos(ang)+ix;
-		offset.y=-F*base*sin(ang)+iy;
+		if(F<nPieces){
+			offset.x=F*base*cos(ang)+ix;
+			offset.y=-F*base*sin(ang)+iy;
+		}else{
+			if(left>base-1){
+				offset.x=F*base*cos(ang)+ix;
+				offset.y=-F*base*sin(ang)+iy;
+			}
+		}
 	}
 	SDL_Surface *rotatedImg=rotozoomSurface(tr,ang*360/(2*M_PI),1.0,0);
 	if(offset.x>0 && offset.x<width && offset.y>0 && offset.y < height){

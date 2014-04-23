@@ -64,8 +64,8 @@ void Menu::addButton(){
 	} 
 }
 
-void Menu::draw(SDL_Surface *screen,SDL_Surface *background){
-	rectangleRGBA(s,rect[0],rect[1],rect[2],rect[3],155,155,155,155);
+void Menu::draw(SDL_Surface *screen,vector<SDL_Surface *> background){
+//	rectangleRGBA(s,rect[0],rect[1],rect[2],rect[3],155,155,155,155);
 	SDL_Rect offset;
 	offset.x=rect[0];
 	offset.y=rect[1];
@@ -73,11 +73,17 @@ void Menu::draw(SDL_Surface *screen,SDL_Surface *background){
 	rec.x=rec.y=0;
 	rec.w=(rect[2]-rect[0]);
 	rec.h=(rect[3]-rect[1]);
-	SDL_BlitSurface(background,&rec,screen,&offset);
+//	SDL_BlitSurface(background[0],&rec,screen,&offset);
 	int count = 0;
 	for(vector<Button>::iterator it=b.begin(); it!=b.end(); it++){
 		count++;
-		it->draw(screen,count);
+		offset.x=it->cornerX;
+		offset.y=it->cornerY;
+		if(it->getState()==1){
+			SDL_BlitSurface(background[0],NULL,screen,&offset);
+		}
+		SDL_BlitSurface(background[count],NULL,screen,&offset);
+//		it->draw(screen,count);
 	}
 }
 

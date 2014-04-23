@@ -23,7 +23,7 @@ public:
 	void toggle(int);
 	int getState(int);
 	void move(double, double);
-	void draw(SDL_Surface *,SDL_Surface *);
+	void draw(SDL_Surface *,vector<SDL_Surface *>);
 	vector<double> menuBox();
 };
 

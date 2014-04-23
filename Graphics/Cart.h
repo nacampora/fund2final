@@ -17,9 +17,13 @@ class Cart{
 		double direction;		//radians
 		int hertz;			//per second
 		void increment();
-		void draw(int, int);
+		void draw(int, int,SDL_Surface *,SDL_Surface *);
 		int currTrack;
 		double distTrack;
+		int fwCurrTrack;
+		double fwDistTrack;
+		int swCurrTrack;
+		double swDistTrack;
 	private:
 		SDL_Surface *screen;
 };

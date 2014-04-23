@@ -185,6 +185,7 @@ void RollerCoaster::checkPlace(Cart *myCart){
 		myCart->fwDistTrack=fratio;
 	}
 	double distSec= distance(track[myCart->swCurrTrack].startX,track[myCart->swCurrTrack].startY,x3,y3);
+
 	double distS = distance(track[myCart->swCurrTrack].startX,track[myCart->swCurrTrack].startY,track[myCart->swCurrTrack].endX,track[myCart->swCurrTrack].endY);
 	double sratio=distSec/distS;
 	if(sratio>1){

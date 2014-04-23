@@ -6,7 +6,7 @@ using namespace std;
 int main(void){
 	SDL_Surface* screen = NULL;
 	SDL_Init( SDL_INIT_EVERYTHING );
-	screen = SDL_SetVideoMode( 1200, 600, 32, SDL_SWSURFACE ); 
+	screen = SDL_SetVideoMode( 1300, 650, 32, SDL_SWSURFACE ); 
 	RollerCoaster R1(screen,"First Roller Coaster");
 	R1.displayInterface();
 }

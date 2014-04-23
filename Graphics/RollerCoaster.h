@@ -15,8 +15,20 @@ using namespace std;
 class RollerCoaster{
 
 private:
+	int peopleOnRide;
+	SDL_Surface *backG;
+	SDL_Surface *backSky;
+	SDL_Surface *cartPNG;
 	SDL_Surface *trackPNG;
 	SDL_Surface *menuBackPNG;
+	SDL_Surface *blankPNG;
+	SDL_Surface *button0PNG;
+	SDL_Surface *button1PNG;
+	SDL_Surface *button2PNG;
+	SDL_Surface *button3PNG;
+	SDL_Surface *button4PNG;
+	SDL_Surface *button5PNG;
+	SDL_Surface *button6PNG;
 	int connected;
 	int cursorType;
 	int currOffsetX, currOffsetY, lastOffsetX,lastOffsetY;
