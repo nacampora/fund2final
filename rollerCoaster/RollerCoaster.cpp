@@ -1,7 +1,7 @@
 #include "RollerCoaster.h"
+//#include "Finances.h"
 #include "Button.cpp"
 #include "Menu.cpp"
-#include "global.cpp"
 #include "Cart.h"
 #include "Cart.cpp"
 #include <iostream>
@@ -19,7 +19,10 @@ using namespace std;
 
 int windowHeight=500;
 
+//RollerCoaster::RollerCoaster(SDL_Surface *r,string s,Finances *F){
 RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
+//	F1=F;
+	rideEntranceFee=1;
 	trackAdd=1;		//Type of track you are using
 	name = s;		//Name the RollerCoaster
 	OperationStatus=0;	//Initially closed
@@ -27,7 +30,7 @@ RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
 	connected=1;
 	track.clear();
 	screen=r;
-	int nBut=7;
+	int nBut=8;
 	mainMenu = new Menu(r,20,20,nBut,30);
 	mainMenu->toggle(0);
 	mainMenu->toggle(1);
@@ -42,7 +45,7 @@ RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
 	backSky=IMG_Load("images/Sky.png");
 	backG=IMG_Load("images/Ground.png");
 	cartPNG=IMG_Load("images/Cart.png");
-	trackPNG=IMG_Load("images/track.png");
+	trackPNG=IMG_Load("images/Screenshot-1.png");
 	menuBackPNG=IMG_Load("red.png");
 	blankPNG=IMG_Load("images/Blank.png");
 	button0PNG=IMG_Load("images/Connected-Track.png");
@@ -52,7 +55,21 @@ RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
 	button4PNG=IMG_Load("images/Drag.png");
 	button5PNG=IMG_Load("images/Erase.png");
 	button6PNG=IMG_Load("images/Play.png");
+	button7PNG=IMG_Load("images/Stop.png");
 	peopleOnRide=0;
+	maxPeopleOnRide=4;
+}
+
+void RollerCoaster::increaseRideEntranceFee(){
+	rideEntranceFee++;
+}
+
+void RollerCoaster::decreaseRideEntranceFee(){
+	rideEntranceFee--;
+}
+
+int RollerCoaster::getRideEntranceFee(){
+	return rideEntranceFee;
 }
 
 string RollerCoaster::getName(){
@@ -66,6 +83,11 @@ void RollerCoaster::setName(string s){
 void RollerCoaster::rateCoaster(){
 	//Going to have to do with play -- play without animation and measure values.
 }
+
+double RollerCoaster::distance(double x1,double y1,double x2,double y2){
+	return sqrt(pow((x2-x1),2)+pow((y2-y1),2));
+}
+
 
 int RollerCoaster::selectTrack(double x0, double y0){	
 	int offset=10;
@@ -89,6 +111,7 @@ int RollerCoaster::selectTrack(double x0, double y0){
 	return -1;
 }
 
+		//	int RollerCoaster::addTrack(double x1,double y1,double x2,double y2,Finances *F1){
 int RollerCoaster::addTrack(double x1,double y1,double x2,double y2){
 	TrackPiece T;
 	T.trackType = trackAdd;
@@ -96,30 +119,37 @@ int RollerCoaster::addTrack(double x1,double y1,double x2,double y2){
 	T.startY = y1;
 	T.endX = x2;
 	T.endY = y2;
+/*	if(T.trackType==1){
+		F1->buyStation();
+		worth+=F1->stationPrice;
+	}else{
+		if(abs(tan(T.findAngle())>1)){
+			F1->buySteep();
+			worth+=F1->steepPrice;
+		}else{
+			F1->buyGradual();
+			worth+=F1->gradualPrice;
+		}
+	}	*/
 	if(trackAdd==1 && nStations==0){
 		if(x2>x1){
+			track.clear();
+			T.startX=10;
 			track.push_back(T);
 		}else{
 			return 0;
 		}
 	}else if(trackAdd!=1 && nStations==0){
 		nStations=1;
+		
 		track.push_back(T);
 	}else if(trackAdd==1 && nStations==1){
-		TrackPiece R;
-		R.trackType=0;
-		R.startX=track[track.size()-1].endX;
-		R.startY=track[track.size()-1].endY;
-		R.endX=x1;
-		R.endY=y1;
-		track.push_back(R);
-		track.push_back(T);
-		nStations=2;
-	}else if(nStations==2){
 		if(x2>x1){
+			T.startX=x1;
+			T.startY=T.endY=y1;
+			T.endX=x1+track[0].endX-track[0].startX;
 			track.push_back(T);
-		}else{
-			return 0;
+			nStations=2;
 		}
 	}else{
 		track.push_back(T);
@@ -143,6 +173,7 @@ void RollerCoaster::drawCurrent(){
 	myVec.push_back(button4PNG);
 	myVec.push_back(button5PNG);
 	myVec.push_back(button6PNG);
+	myVec.push_back(button7PNG);
 	mainMenu->draw(screen,myVec);
 	for(vector<TrackPiece>::iterator it=track.begin();it!=track.end();it++){
 		it->drawPiece(screen,trackPNG,currOffsetX,currOffsetY);
@@ -165,24 +196,26 @@ void RollerCoaster::checkPlace(Cart *myCart){
 	double y3=y1-(myCart->width)*((w2/100)-.5)*sin(ang);
 	double distMiddle= distance(track[myCart->currTrack].startX,track[myCart->currTrack].startY,x1,y1);
 	double ratio=distMiddle/dist;
-	if(ratio>1){
-		myCart->currTrack++;
-		checkPlace(myCart);
-		break;
-	}else{
-		myCart->distTrack=ratio;
-	}
+	myCart->distTrack=ratio;
 	double distFirst= distance(track[myCart->fwCurrTrack].startX,track[myCart->fwCurrTrack].startY,x2,y2);
 	double distF = distance(track[myCart->fwCurrTrack].startX,track[myCart->fwCurrTrack].startY,track[myCart->fwCurrTrack].endX,track[myCart->fwCurrTrack].endY);
 	double fratio=distFirst/distF;
-//	cout << fratio << " 1" << endl;
-//	cout << distFirst << " " << dist << endl;
 	if(fratio>1){
 		myCart->fwCurrTrack++;
+		myCart->currTrack=myCart->fwCurrTrack; 
+		myCart->fixedX=track[myCart->currTrack].startX+(CW/2-CW*W1/100+dist*(fratio-1))*cos(track[myCart->currTrack].findAngle());
+		myCart->x=myCart->fixedX+CH*cos(track[myCart->currTrack].findAngle()+M_PI/2)/2;
+		myCart->fixedX=myCart->x;
+		myCart->fixedY=track[myCart->currTrack].startY-(CW/2-CW*W1/100+dist*(fratio-1))*sin(track[myCart->currTrack].findAngle());
+		myCart->y=myCart->fixedY-CH*sin(track[myCart->currTrack].findAngle()+M_PI/2)/2;
+		myCart->fixedY=myCart->y;
 		checkPlace(myCart);
 		break;
+	}else if(fratio<0){
+		
 	}else{
 		myCart->fwDistTrack=fratio;
+		myCart->currTrack=myCart->fwCurrTrack;
 	}
 	double distSec= distance(track[myCart->swCurrTrack].startX,track[myCart->swCurrTrack].startY,x3,y3);
 	double distS = distance(track[myCart->swCurrTrack].startX,track[myCart->swCurrTrack].startY,track[myCart->swCurrTrack].endX,track[myCart->swCurrTrack].endY);
@@ -198,35 +231,50 @@ void RollerCoaster::checkPlace(Cart *myCart){
 	double fwY=track[myCart->fwCurrTrack].startY-distFirst*sin(track[myCart->fwCurrTrack].findAngle());
 	double swX=track[myCart->swCurrTrack].startX+distSec*cos(track[myCart->swCurrTrack].findAngle());
 	double swY=track[myCart->swCurrTrack].startY-distSec*sin(track[myCart->swCurrTrack].findAngle());
-//	cout << myCart->fwCurrTrack << " " << myCart->swCurrTrack << " " << fwX << " " << fwY << " " << swX << " " << swY << endl;
 	TrackPiece t(fwX,fwY,swX,swY,0);
 	double a=t.findAngle();
-//	cout << a << endl;
 	myCart->angle=a;
-	myCart->direction=a;
+	myCart->direction=track[myCart->fwCurrTrack].findAngle();
 	dist = distance(track[myCart->currTrack].startX,track[myCart->currTrack].startY,track[myCart->currTrack].endX,track[myCart->currTrack].endY);
 	myCart->x=track[myCart->currTrack].startX+(myCart->distTrack)*dist*cos(track[myCart->currTrack].findAngle())+CH*cos(track[myCart->currTrack].findAngle()+M_PI/2)/2;
 	myCart->y=track[myCart->currTrack].startY-(myCart->distTrack)*dist*sin(track[myCart->currTrack].findAngle())-CH*sin(track[myCart->currTrack].findAngle()+M_PI/2)/2;
+	int m=fwX+(CW/2-CW*W1/100)*cos(myCart->angle)+CH*cos(myCart->angle+M_PI/2)/2;
+	int n=fwY-(CW/2-CW*W1/100)*sin(myCart->angle)-CH*sin(myCart->angle+M_PI/2)/2;
+	myCart->fixedX=m;
+	myCart->fixedY=n;
 	}
 }
 
 void RollerCoaster::updateSpeed(Cart *myCart,int x1,int y1){
 	if(track[myCart->currTrack].trackType==1 || track[myCart->currTrack].trackType==2){
-		myCart->speed=.1;
-	}else if(track[myCart->currTrack].trackType==0){
-		myCart->speed-=(y1-myCart->y)/(myCart->ppm);
+		myCart->speed=5;
+	}else{
+		if(myCart->speed>0){
+			myCart->speed+=(myCart->y-y1)/15;
+		}else{
+			myCart->speed+=(y1-myCart->y)/15;
+		}
 	}
 }
 
 void RollerCoaster::play(){
 	int w=CW;
 	int h=CH;
-	Cart myCart(10+w/2,windowHeight-h/2,w,h,screen);
-	myCart.draw(currOffsetX,currOffsetY,screen,cartPNG);
-	myCart.speed=.15;
+	int nCarts = (track[0].endX-track[0].startX)/(w+10);
+	vector<Cart *> carts;
+	for(int F=0;F<nCarts;F++){
+		Cart *myCart = new Cart(10+w/2+F*(w+5),windowHeight-h/2,w,h,screen);
+		myCart->fixedX=myCart->x;
+		myCart->fixedY=myCart->y;
+		myCart->draw(currOffsetX,currOffsetY,screen,cartPNG);
+		myCart->speed=.15;
+		carts.push_back(myCart);
+	}
 	SDL_Flip(screen);
-	SDL_Delay(200);
+	SDL_Delay(500);
 	int stop=0;
+	int countDown=0;
+	int countDownVal=5;
 	while(stop==0){
 		SDL_Event test_event;
 		while(SDL_PollEvent(&test_event)){
@@ -236,25 +284,53 @@ void RollerCoaster::play(){
 			double yd=(double) y;
 			switch(test_event.type){
 				case SDL_MOUSEBUTTONDOWN:
-					stop=1;
-					break;
+					int a = mainMenu->buttonClicked(xd,yd);
+					if(a==7){
+						stop=1;
+						break;
+					}
 			}
 		}
-		double lastx=myCart.x;
-		double lasty=myCart.y;
-		if(myCart.x>300){
-			currOffsetX=myCart.x-300;
+		for(int F=0;F<nCarts;F++){
+			carts[F]->lastx = carts[F]->x;
+			carts[F]->lasty = carts[F]->y;
+		}
+		if(carts[nCarts-1]->x>300){
+			currOffsetX=carts[nCarts-1]->fixedX-300-(nCarts<5?nCarts*50:250);
 		}else{
 			currOffsetX=0;
 		}
-		currOffsetY=-myCart.y+windowHeight;
-		checkPlace(&myCart);
-		updateSpeed(&myCart,lastx,lasty);
+		currOffsetY=-carts[nCarts-1]->fixedY+windowHeight-(nCarts<6?nCarts*50:250);
+		if(currOffsetY<0){
+			currOffsetY=0;
+		}
 		drawCurrent();
-		myCart.increment();
-		myCart.draw(currOffsetX,currOffsetY,screen,cartPNG);
+		double averageSpeed=0;
+		for(int F=0;F<nCarts;F++){
+			averageSpeed+=carts[F]->speed;
+		}
+		averageSpeed=averageSpeed/nCarts;
+		for(int F=0;F<nCarts;F++){
+			carts[F]->speed=averageSpeed;
+		}
+		for(int F=0;F<nCarts;F++){
+			carts[F]->increment();
+			checkPlace(carts[F]);
+			updateSpeed(carts[F],carts[F]->lastx,carts[F]->lasty);
+			carts[F]->draw(currOffsetX,currOffsetY,screen,cartPNG);
+		}
 		SDL_Flip(screen);
 		SDL_Delay(50);
+		if(carts[0]->currTrack==track.size()-1){
+			countDown=1;
+		}
+		if(countDown==1){
+			countDownVal--;
+		}
+		if(countDownVal<0){
+			stop=1;
+			SDL_Delay(1000);
+		}
 	}
 }
 
@@ -338,6 +414,9 @@ Button list:
 			if(mainMenu->getState(4)==0){
 				cursorType=1;
 				mainMenu->toggle(4);
+				if(mainMenu->getState(5)==1){
+					mainMenu->toggle(5);
+				}
 			}else{
 				cursorType=0;
 				mainMenu->toggle(4);
@@ -356,7 +435,11 @@ Button list:
 			}
 			break;
 		case 6:
-			play();
+			if(nStations==2){
+				play();
+			}else{
+				cout << "Not Enough Stations" << endl;
+			}
 			break;
 		default:
 			break;
@@ -364,14 +447,15 @@ Button list:
 }
 
 void RollerCoaster::parseTrackInfo(double x1,double y1,double x2,double y2,double x,double y){
-	if(trackAdd==1){
+	if(nStations==0 && trackAdd==1){
 		y2=windowHeight;
 		y1=windowHeight;
 		y=windowHeight;
 	}
 	double d = distance(x1,y1,x2,y2);
 	int nPieces=d/base+1;
-	int a=addTrack(x1,y1,x2,y2);
+	int a=0;
+	a=addTrack(x1,y1,x2,y2);
 	double ang=track[track.size()-1].findAngle();
 	x2=x1+nPieces*base*cos(ang);
 	y2=y1-nPieces*base*sin(ang);
@@ -392,7 +476,9 @@ void RollerCoaster::parseTrackInfo(double x1,double y1,double x2,double y2,doubl
 		int s=track.size();
 		parseInfo(x-currOffsetX,y+currOffsetY);
 	}
-
+	if(nStations==2){
+		track[track.size()-1].endX=track[track.size()-1].startX+track[0].endX-track[0].startX;
+	}
 }
 
 void RollerCoaster::parseInfo(double x,double y){
@@ -404,7 +490,7 @@ void RollerCoaster::parseInfo(double x,double y){
 	}else{
 		x+=currOffsetX;
 		y-=currOffsetY;
-		if(cursorType==0){
+		if(cursorType==0 && nStations!=2){
 			clicks.push_back((double) x);
 			clicks.push_back((double) y);
 			if(clicks.size()==4){
@@ -412,7 +498,12 @@ void RollerCoaster::parseInfo(double x,double y){
 			}
 		}else if(cursorType==2){
 			int a = selectTrack(x,y);
-			if(a>-1){
+			if((a>0 || track.size()==1) && (track[track.size()-1].trackType!=1 || a==track.size()-1)){
+				if(track.size()==1){
+					nStations=0;
+				}else if(track[track.size()-1].trackType==1){
+					nStations=1;
+				}
 				int count=0;
 				for(vector<TrackPiece>::iterator it=track.begin(); it!=track.end(); it++){
 					if(count==a){

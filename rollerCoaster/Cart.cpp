@@ -8,6 +8,8 @@ using namespace std;
 
 
 Cart::Cart(double x1,double y1,int w,int l,SDL_Surface *s){
+	fixedX=0;
+	fixedY=0;
 	distTrack=0;
 	currTrack=0;
 	fwCurrTrack=0;
@@ -22,7 +24,7 @@ Cart::Cart(double x1,double y1,int w,int l,SDL_Surface *s){
 	angleSpeed=0;
 	speed=0;
 	direction=0;
-	ppm=100;
+	ppm=1;
 }
 
 void Cart::increment(){
@@ -35,8 +37,8 @@ void Cart::increment(){
 void Cart::draw(int Ox,int Oy,SDL_Surface *s,SDL_Surface *cartPNG){
 	double savex = x;
 	double savey = y;
-	x = x-Ox;
-	y = y+Oy;
+	x = fixedX-Ox;
+	y = fixedY+Oy;
 	SDL_Rect offset;
 	offset.x=x-length*sin(angle)/2-width*cos(angle)/2;
 	offset.y=y-length*cos(angle)/2+width*sin(angle)/2;

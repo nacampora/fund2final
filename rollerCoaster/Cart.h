@@ -10,12 +10,13 @@ class Cart{
 	public:
 		Cart(double,double,int length,int width,SDL_Surface *);
 		int ppm;			//pixels per meter
-		double x,y;			//position in pixels
+		double x,y,lastx,lasty;		//position in pixels
 		double length,width,angle;	//meters,meters,radians
 		double angleSpeed;		//radians/s
 		double speed;			//meters/s
 		double direction;		//radians
 		int hertz;			//per second
+		double fixedX,fixedY;
 		void increment();
 		void draw(int, int,SDL_Surface *,SDL_Surface *);
 		int currTrack;

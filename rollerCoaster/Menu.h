@@ -16,6 +16,7 @@ private:
 	int buttonSize;
 	void addButton();	
 	SDL_Surface *s;
+	int isInsideBox(double,double,double,double,double,double);
 public:
 	Menu(SDL_Surface *,double,double,int,int);
 	vector<double> findPlace(int,int);

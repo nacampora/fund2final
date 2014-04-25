@@ -17,5 +17,6 @@ public:
 	double trackType;		//Regular, Station, Chain, Shootoff
 	void drawPiece(SDL_Surface *,SDL_Surface *,int,int);
 	double findAngle();
+	double dist(double,double,double,double);
 };
 #endif

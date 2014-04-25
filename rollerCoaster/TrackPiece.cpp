@@ -10,7 +10,7 @@ using namespace std;
 #define base 15
 #define width 1300
 #define height 650
-double dist(double x1,double y1,double x2,double y2){
+double TrackPiece::dist(double x1,double y1,double x2,double y2){
 	return sqrt(pow((x2-x1),2)+pow((y2-y1),2));
 }
 TrackPiece::TrackPiece(double x1,double y1,double x2,double y2,int track){
@@ -74,7 +74,7 @@ void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offset
 			offset.x=F*base*cos(ang)+ix;
 			offset.y=-F*base*sin(ang)+iy;
 		}else{
-			if(left>base-1){
+			if(left>1){
 				offset.x=F*base*cos(ang)+ix;
 				offset.y=-F*base*sin(ang)+iy;
 			}
