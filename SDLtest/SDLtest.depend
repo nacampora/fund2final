@@ -2,29 +2,30 @@
 1395005099 source:d:\nick\documents\college\sophomore\fund2final\sdltest\try.c
 	"SDL/SDL.h"
 
-1397153425 source:d:\nick\documents\college\sophomore\fund2final\sdltest\capp.cpp
+1398108640 source:d:\nick\documents\college\sophomore\fund2final\sdltest\capp.cpp
 	"CApp.h"
 
-1397156478 d:\nick\documents\college\sophomore\fund2final\sdltest\capp.h
+1398664028 d:\nick\documents\college\sophomore\fund2final\sdltest\capp.h
 	"SDL/SDL.h"
 	"CEvent.h"
 	"CSurface.h"
 	"hfiles/Park.h"
 
-1397085468 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oncleanup.cpp
+1398133312 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oncleanup.cpp
 	"CApp.h"
 
-1397157617 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onevent.cpp
+1398666956 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onevent.cpp
 	"CApp.h"
 	<math.h>
+	<fstream>
 
-1397153498 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oninit.cpp
+1398648473 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oninit.cpp
 	"CApp.h"
 
 1395005504 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onloop.cpp
 	"CApp.h"
 
-1397158083 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onrender.cpp
+1398298565 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onrender.cpp
 	"CApp.h"
 
 1397063994 d:\nick\documents\college\sophomore\fund2final\sdltest\csurface.h
@@ -41,7 +42,7 @@
 1395085582 source:d:\nick\documents\college\sophomore\fund2final\sdltest\cevent.cpp
 	"CEvent.h"
 
-1397154204 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\park.h
+1398126846 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\park.h
 	<math.h>
 	<vector>
 	<iostream>

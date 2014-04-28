@@ -14,7 +14,7 @@ using namespace std;
 class Park
 {
     public:
-        Park(double m=0,int p=0, int xgs=26,int ygs=10,int men=0);//constructor
+        Park(double m=0,int p=0, int xgs=26,int ygs=13,int men=0);//constructor
 
         //person people;
         void event();

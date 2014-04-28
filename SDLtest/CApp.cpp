@@ -19,8 +19,13 @@ CApp::CApp() {
     Surf_BRoom = NULL;//tiles for bathroom building in top down park view
     Surf_Vendor = NULL;//tiles for food vendor building in top down park view
     Surf_Menu = NULL;//menu display that appears when tile is selected in top down view
+    Surf_RMenu = NULL;//menu display that appears when a rollercoaster tyle is selected in top down display
+    Surf_MMenu = NULL;//menu displays when main menu icon is pressed
+    Surf_Gear = NULL;//icon to press to display main menu
+    Surf_Begin = NULL;//load and new game opening screen of game
 
     Running = true;//initializes game to running
+    Begin = false;//initializes game to start on Surf_Begin
 }
 
 //called from main() controls all main operations of game. allows game to begin and loops through updates based on input and
@@ -38,7 +43,10 @@ int CApp::OnExecute() {
         while(SDL_PollEvent(&Event)) {//loops and checks for user input and asssigns it to variable event
             OnEvent(&Event);//when user input occurs, game changes based on user input in this function
         }
+        if(Begin==false)
+        {
 
+        }
         OnLoop();//updates game based on number of times through loop
         OnRender();//updates GUI graphics each loop
     }

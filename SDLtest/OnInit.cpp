@@ -27,10 +27,21 @@ bool CApp::OnInit() {
     if((Surf_Path = CSurface::OnLoad("path_img.png")) == NULL) {
         return false;
     }
-    if((Surf_Menu = CSurface::OnLoad("menu_img.png")) == NULL){
+    if((Surf_Menu = CSurface::OnLoad("menu_img.gif")) == NULL){
         return false;
     }
-
+    if((Surf_RMenu = CSurface::OnLoad("rmenu_img.gif")) == NULL){
+        return false;
+    }
+    if((Surf_MMenu = CSurface::OnLoad("mainmenua_img.gif")) == NULL){
+        return false;
+    }
+    if((Surf_Gear = CSurface::OnLoad("gear_img.png")) == NULL){
+        return false;
+    }
+    if((Surf_Begin = CSurface::OnLoad("loadscreen_img.png")) == NULL){
+        return false;
+    }
 
     return true;
 }

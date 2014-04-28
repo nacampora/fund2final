@@ -18,8 +18,10 @@
 
 class CApp : public CEvent {
     private:
-        bool            Running;// true or false based on whether or not the game is running correctly. when false, the program
+
+        bool    Running;// true or false based on whether or not the game is running correctly. when false, the program
         //cleans up all memory and ends
+        bool    Begin;//true or false based on if user has exited starting screen
 
 
 //the following SDL surfaces are pointers to all of the images displayed in the GUI. files are assigned to the images in
@@ -32,6 +34,10 @@ class CApp : public CEvent {
         SDL_Surface*    Surf_BRoom;//tiles for bathroom building in top down park view
         SDL_Surface*    Surf_Vendor;//tiles for food vendor building in top down park view
         SDL_Surface*    Surf_Menu;//menu display that appears when tile is selected in top down view
+        SDL_Surface*    Surf_RMenu;//menu display that appears when rollercoaster tile is selected in top down view
+        SDL_Surface*    Surf_MMenu;//menu displays when main menu icon is pressed
+        SDL_Surface*    Surf_Gear;//icon to press to display main menu
+        SDL_Surface*    Surf_Begin;//load and new game opening screen of game
     public:
         CApp();//constructor initializes all SDL surfaces and the "bool running" variable
 
@@ -45,6 +51,9 @@ class CApp : public CEvent {
 
         void OnEvent(SDL_Event* Event);//function that controls actions when user provides input
             void OnLButtonDown(int, int);//on left click of mouse, controls game response based on location of mouse on screen
+                void mainmenu(int,int);
+                int buymenu(int,int);
+                void coastermenu(int,int);
             void OnKeyDown(SDLKey, SDLMod, Uint16);//when keyboard input is provided, controls game response based on key pressed
             void OnExit();//when red x button is pressed, removes sdl spaces from memory and exits
 
