@@ -50,8 +50,8 @@ void Cart::draw(int Ox,int Oy,SDL_Surface *s,SDL_Surface *cartPNG){
 		offset.x-=2*length*sin(angle-M_PI/2);
 	}else if(angle>=M_PI && angle < M_PI*3/2){
 		offset.x-=2*length*cos(angle-M_PI);
-		offset.x-=width*sin(angle-M_PI)/2;
-		offset.y-=width*cos(angle-M_PI)/2;
+		offset.x-=width*sin(angle-M_PI)/1.66;
+		offset.y-=width*cos(angle-M_PI)/1.66;
 	}else if(angle>=M_PI*3/2 && angle<=2*M_PI){
 		offset.x-=length*cos(angle-3*M_PI/2);
 	}

@@ -22,6 +22,7 @@ int windowHeight=500;
 //RollerCoaster::RollerCoaster(SDL_Surface *r,string s,Finances *F){
 RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
 //	F1=F;
+	nCarts=0;
 	rideEntranceFee=1;
 	trackAdd=1;		//Type of track you are using
 	name = s;		//Name the RollerCoaster
@@ -45,7 +46,8 @@ RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
 	backSky=IMG_Load("images/Sky.png");
 	backG=IMG_Load("images/Ground.png");
 	cartPNG=IMG_Load("images/Cart.png");
-	trackPNG=IMG_Load("images/Screenshot-1.png");
+	trackPNG=IMG_Load("images/track2.png");
+	PNGheight=20;
 	menuBackPNG=IMG_Load("red.png");
 	blankPNG=IMG_Load("images/Blank.png");
 	button0PNG=IMG_Load("images/Connected-Track.png");
@@ -56,6 +58,15 @@ RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
 	button5PNG=IMG_Load("images/Erase.png");
 	button6PNG=IMG_Load("images/Play.png");
 	button7PNG=IMG_Load("images/Stop.png");
+	myVec.push_back(blankPNG); 
+	myVec.push_back(button0PNG);
+	myVec.push_back(button1PNG);
+	myVec.push_back(button2PNG);
+	myVec.push_back(button3PNG);
+	myVec.push_back(button4PNG);
+	myVec.push_back(button5PNG);
+	myVec.push_back(button6PNG);
+	myVec.push_back(button7PNG);
 	peopleOnRide=0;
 	maxPeopleOnRide=4;
 }
@@ -158,26 +169,20 @@ int RollerCoaster::addTrack(double x1,double y1,double x2,double y2){
 }
 
 void RollerCoaster::drawCurrent(){
-//	SDL_FillRect(screen,NULL, 0x000000);
 	SDL_BlitSurface(backSky,NULL,screen,NULL);
 	SDL_Rect off;
 	off.x=0;
 	off.y=windowHeight-30+currOffsetY;
 	SDL_BlitSurface(backG,NULL,screen,&off);
-	vector<SDL_Surface *> myVec;
-	myVec.push_back(blankPNG); 
-	myVec.push_back(button0PNG);
-	myVec.push_back(button1PNG);
-	myVec.push_back(button2PNG);
-	myVec.push_back(button3PNG);
-	myVec.push_back(button4PNG);
-	myVec.push_back(button5PNG);
-	myVec.push_back(button6PNG);
-	myVec.push_back(button7PNG);
-	mainMenu->draw(screen,myVec);
-	for(vector<TrackPiece>::iterator it=track.begin();it!=track.end();it++){
-		it->drawPiece(screen,trackPNG,currOffsetX,currOffsetY);
+	for(int i=track.size()-1;i>=0;i--){
+		track[i].drawPiece(screen,trackPNG,currOffsetX,currOffsetY,PNGheight);
+		for(int F=0;F<nCarts;F++){
+			if(carts[F]->currTrack==i){
+				carts[F]->draw(currOffsetX,currOffsetY,screen,cartPNG);
+			}
+		}
 	}
+	mainMenu->draw(screen,myVec);
 }
 
 void RollerCoaster::checkPlace(Cart *myCart){
@@ -247,7 +252,7 @@ void RollerCoaster::checkPlace(Cart *myCart){
 
 void RollerCoaster::updateSpeed(Cart *myCart,int x1,int y1){
 	if(track[myCart->currTrack].trackType==1 || track[myCart->currTrack].trackType==2){
-		myCart->speed=5;
+		myCart->speed=10;
 	}else{
 		if(myCart->speed>0){
 			myCart->speed+=(myCart->y-y1)/15;
@@ -260,8 +265,8 @@ void RollerCoaster::updateSpeed(Cart *myCart,int x1,int y1){
 void RollerCoaster::play(){
 	int w=CW;
 	int h=CH;
-	int nCarts = (track[0].endX-track[0].startX)/(w+10);
-	vector<Cart *> carts;
+	nCarts = (track[0].endX-track[0].startX)/(w+10);
+	carts.clear();
 	for(int F=0;F<nCarts;F++){
 		Cart *myCart = new Cart(10+w/2+F*(w+5),windowHeight-h/2,w,h,screen);
 		myCart->fixedX=myCart->x;
@@ -304,9 +309,9 @@ void RollerCoaster::play(){
 		if(currOffsetY<0){
 			currOffsetY=0;
 		}
-		drawCurrent();
 		double averageSpeed=0;
 		for(int F=0;F<nCarts;F++){
+			updateSpeed(carts[F],carts[F]->lastx,carts[F]->lasty);
 			averageSpeed+=carts[F]->speed;
 		}
 		averageSpeed=averageSpeed/nCarts;
@@ -315,9 +320,9 @@ void RollerCoaster::play(){
 		}
 		for(int F=0;F<nCarts;F++){
 			carts[F]->increment();
-			checkPlace(carts[F]);
 			updateSpeed(carts[F],carts[F]->lastx,carts[F]->lasty);
-			carts[F]->draw(currOffsetX,currOffsetY,screen,cartPNG);
+			checkPlace(carts[F]);
+			drawCurrent();
 		}
 		SDL_Flip(screen);
 		SDL_Delay(50);
@@ -332,6 +337,7 @@ void RollerCoaster::play(){
 			SDL_Delay(1000);
 		}
 	}
+	carts.clear();
 }
 
 void RollerCoaster::menuChanges(int a){
@@ -541,9 +547,9 @@ void RollerCoaster::parseDrag(Uint16 x,Uint16 y,int type){
 		}else if(type==SDL_MOUSEBUTTONUP){
 			dragStatus=0;
 		}
+		drawCurrent();
+		SDL_Flip( screen ); 		
 	}
-	drawCurrent();
-	SDL_Flip( screen ); 		
 }
 
 void RollerCoaster::displayInterface(){

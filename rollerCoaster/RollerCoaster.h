@@ -21,6 +21,7 @@ private:
 	SDL_Surface *backSky;
 	SDL_Surface *cartPNG;
 	SDL_Surface *trackPNG;
+	int PNGheight;
 	SDL_Surface *menuBackPNG;
 	SDL_Surface *blankPNG;
 	SDL_Surface *button0PNG;
@@ -46,6 +47,9 @@ private:
 	Menu *mainMenu;
 //	Finances *F1;
 	string name;
+	int nCarts;
+	vector<SDL_Surface *> myVec;
+	vector<Cart *> carts;
 	vector<TrackPiece> track;
 	vector<Uint16> clicks;
 	Rating rating;

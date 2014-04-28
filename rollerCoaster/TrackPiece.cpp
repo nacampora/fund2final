@@ -41,7 +41,7 @@ double TrackPiece::findAngle(){
 	return ang;
 }
 
-void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offsetY){
+void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offsetY,int PNGheight){
 	if(startY>height){
 		startY=startY-65535;
 	}
@@ -60,8 +60,20 @@ void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offset
 	}else if(ang>=M_PI/2 && ang<M_PI){
 		offset.x-=base*sin(ang-M_PI/2);
 		offset.y-=base*cos(ang-M_PI/2);
+//		offset.x-=PNGheight*((ang-M_PI/2)/(M_PI/2));
+//		offset.y-=PNGheight*((ang-M_PI/2)/(M_PI/2));
+//		cout << ang << " " << (1-((ang-M_PI/2)/(M_PI/2))) << endl;
+		offset.x-=PNGheight*(((ang-M_PI/2)/(M_PI/2)))*sin(ang+M_PI);
+		offset.y-=PNGheight*(((ang-M_PI/2)/(M_PI/2)))*cos(ang+M_PI);
 	}else if(ang>=M_PI && ang < M_PI*3/2){
 		offset.x-=base*cos(ang-M_PI);
+		offset.x-=PNGheight*sin(ang-M_PI);
+		offset.y-=PNGheight*cos(ang-M_PI);
+	}else if(ang>=M_PI*3/2 && ang < 2*M_PI){
+		offset.x-=PNGheight*(1-((ang-M_PI*3/2)/(M_PI/2)))*cos(ang+M_PI/2);
+		offset.y-=PNGheight*(1-((ang-M_PI*3/2)/(M_PI/2)))*sin(ang+M_PI/2);
+//		offset.x-=PNGheight*cos(ang-M_PI*3/2)*cos(ang+M_PI/2);
+//		offset.y-=PNGheight*cos(ang-M_PI*3/2)*sin(ang+M_PI/2);
 	}
 	double ix=offset.x;
 	double iy=offset.y;
@@ -84,6 +96,6 @@ void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offset
 	if(offset.x>0 && offset.x<width && offset.y>0 && offset.y < height){
 		SDL_BlitSurface(rotatedImg,NULL,s,&offset);
 	}
-//	lineRGBA(s,ix,iy,offset.x,offset.y,155,155,155,155);	
+//	lineRGBA(s,startX-offsetX,startY+offsetY,endX-offsetX,endY-offsetY,255,255,255,255);	
 	
 }
