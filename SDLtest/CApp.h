@@ -26,6 +26,7 @@ class CApp : public CEvent {
 
 //the following SDL surfaces are pointers to all of the images displayed in the GUI. files are assigned to the images in
 //OnInit.cpp
+        SDL_Surface*    screen;
         SDL_Surface*    Surf_Display;//gui window
         SDL_Surface*    Surf_Grass;//grass tiles for top down park view
         SDL_Surface*    Surf_Path;//path tiles for top down park view
@@ -45,6 +46,8 @@ class CApp : public CEvent {
 
     public:
         Park Pmap;//second level class that conatins variables and functions that control the top down view of the park
+
+
 
         bool OnInit();//function that assigns files to all SDL surfaces. returns true if all surfaces initialize, false if one
         //or more surfaces do not initialize (usually because file can't be found)

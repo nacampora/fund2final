@@ -1,6 +1,11 @@
 #include "CApp.h"
 #include<math.h>
 #include<fstream>
+#include <iostream>
+#include <cstdio>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <dirent.h>
 
 
 void CApp::OnEvent(SDL_Event* Event) {
@@ -188,6 +193,34 @@ int CApp::buymenu(int mX,int mY)
 
 void CApp::coastermenu(int mX,int mY)
 {
+    int xSquare=0;
+    int ySquare=0;
+    for(int i=0;i<Pmap.get_Ygridsize();i++)
+    {
+        for(int j=0;j<Pmap.get_Xgridsize();j++)
+        {
+            if(Pmap.grid[i][j].get_property()%2==1)
+            {
+                 xSquare=j;
+                 ySquare=i;
+            }
+        }
+    }
+    if(Pmap.get_menu()==3)
+    {
+       if(mX>0&&mX<76&&mY>119&&mY<140)
+        {
+            Pmap.grid[ySquare][xSquare].R1.displayInterface(xSquare,ySquare);
+        }
+    }
+    if(Pmap.get_menu()==4)
+    {
+        if(mX>Pmap.get_Xgridsize()*50-130&&mX<Pmap.get_Xgridsize()*50-130+76&&mY>119&&mY<140)
+        {
+            Pmap.grid[ySquare][xSquare].R1.displayInterface(xSquare,ySquare);
+        }
+    }
+
 
 }
 
@@ -205,10 +238,17 @@ void CApp::OnLButtonDown(int mX, int mY) {
                     for(int j=0; j<Pmap.get_Xgridsize();j++)
                     {
                         myfile >> num;
-                        Pmap.grid[i][j].set_property(num); //reading one character from file to array
+                        Pmap.grid[i][j].set_property(num);//reading one character from file to array
                     }
                 }
                 myfile.close();
+            for(int k=0;k<Pmap.get_Ygridsize();k++)
+            {
+                for(int l=0;l<Pmap.get_Xgridsize();l++)
+                {
+                    Pmap.grid[k][l].R1.load(l,k);
+                }
+            }
                 Begin=true;
 
             }
@@ -219,7 +259,7 @@ void CApp::OnLButtonDown(int mX, int mY) {
         }
         if(mX>921&&mX<1254&&mY>358&&mY<472)//if user presses "new game" button
         {
-            Begin=true;
+           Begin=true;
         }
     }//end of if (Begin==false)
 
@@ -242,7 +282,7 @@ void CApp::OnLButtonDown(int mX, int mY) {
         {
             if(Pmap.get_menu()==3||Pmap.get_menu()==4)
             {
-                //coastermenu(mX,mY);//determine if user clicked the edit coaster button
+                coastermenu(mX,mY);//determine if user clicked the edit coaster button
             }
 
             if(Pmap.get_menu()>0&&Pmap.get_menu()<5)//if the highlighted square menu is open

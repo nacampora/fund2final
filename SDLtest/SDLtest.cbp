@@ -36,24 +36,48 @@
 		</Compiler>
 		<Unit filename="BRoom.cpp" />
 		<Unit filename="Building.cpp" />
+		<Unit filename="Button.cpp" />
 		<Unit filename="CApp.cpp" />
 		<Unit filename="CApp.h" />
 		<Unit filename="CEvent.cpp" />
 		<Unit filename="CEvent.h" />
 		<Unit filename="CSurface.cpp" />
 		<Unit filename="CSurface.h" />
+		<Unit filename="Cart.cpp" />
+		<Unit filename="Menu.cpp" />
 		<Unit filename="OnCleanup.cpp" />
 		<Unit filename="OnEvent.cpp" />
 		<Unit filename="OnInit.cpp" />
 		<Unit filename="OnLoop.cpp" />
 		<Unit filename="OnRender.cpp" />
 		<Unit filename="Park.cpp" />
+		<Unit filename="Rating.cpp" />
 		<Unit filename="Ride.cpp" />
+		<Unit filename="RollerCoaster.cpp" />
+		<Unit filename="SDL_gfxBlitFunc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDL_gfxPrimitives.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="SDL_image.h" />
+		<Unit filename="SDL_imageFilter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDL_rotozoom.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Shop.cpp" />
+		<Unit filename="TrackPiece.cpp" />
 		<Unit filename="Vendor.cpp" />
 		<Unit filename="gridSquare.cpp" />
+		<Unit filename="hfiles/Button.h" />
+		<Unit filename="hfiles/Cart.h" />
+		<Unit filename="hfiles/Menu.h" />
 		<Unit filename="hfiles/Park.h" />
+		<Unit filename="hfiles/Rating.h" />
+		<Unit filename="hfiles/RollerCoaster.h" />
+		<Unit filename="hfiles/TrackPiece.h" />
 		<Unit filename="hfiles/bRoom.h" />
 		<Unit filename="hfiles/building.h" />
 		<Unit filename="hfiles/gridSquare.h" />

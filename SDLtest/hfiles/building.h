@@ -5,12 +5,16 @@
 #include"bRoom.h"
 #include"vendor.h"
 #include "ride.h"
+#include "RollerCoaster.h"
+#include<iostream>
+#include<string.h>
+using namespace std;
 
 class Building
 {
     public:
         Building(int p=0);
-
+        RollerCoaster R1;
         Shop sBuild;
         BRoom bBuild;
         Vendor vBuild;

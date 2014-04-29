@@ -4,6 +4,10 @@ bool CApp::OnInit() {
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         return false;
     }
+    /*if((screen = SDL_SetVideoMode( 1300, 650, 32, SDL_SWSURFACE ))==NULL);
+    {
+        return false;
+    }*/
 
     if((Surf_Display = SDL_SetVideoMode((Pmap.get_Xgridsize()*50), (Pmap.get_Ygridsize()*50), 32, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) {
         return false;

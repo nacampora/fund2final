@@ -11,6 +11,7 @@
 #include "CApp.h"
 //constructor initializes all SDL surfaces to the null pointer. they are later assigned files in the function OnInit()
 CApp::CApp() {
+    screen = NULL;
     Surf_Display = NULL;//gui window
     Surf_Grass = NULL;//grass tiles for top down park view
     Surf_Path = NULL;//path tiles for top down park view
