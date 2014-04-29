@@ -20,7 +20,9 @@ private:
 	SDL_Surface *backG;
 	SDL_Surface *backSky;
 	SDL_Surface *cartPNG;
+	SDL_Surface *highlightedTrackPNG;
 	SDL_Surface *trackPNG;
+	int PNGHheight;
 	int PNGheight;
 	SDL_Surface *menuBackPNG;
 	SDL_Surface *blankPNG;
@@ -32,6 +34,7 @@ private:
 	SDL_Surface *button5PNG;
 	SDL_Surface *button6PNG;
 	SDL_Surface *button7PNG;
+	SDL_Surface *button8PNG;
 	int peopleOnRide;
 	int maxPeopleOnRide;
 	int connected;
@@ -51,6 +54,8 @@ private:
 	vector<SDL_Surface *> myVec;
 	vector<Cart *> carts;
 	vector<TrackPiece> track;
+	vector<TrackPiece> cbTrack;
+	vector<TrackPiece> bottomTrack;
 	vector<Uint16> clicks;
 	Rating rating;
 	string getName();
@@ -71,11 +76,11 @@ private:
 	void parseInfo(double,double);
 	void parseDrag(Uint16, Uint16,int);
 	void drawMenu();
-	void drawCurrent();
+	void drawCurrent(int);
 	void play();
 public:
 	int worth;
-	RollerCoaster(string);
+	RollerCoaster();
 	void load(int,int);
 	void displayInterface(int,int);	
 };
