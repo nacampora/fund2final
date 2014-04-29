@@ -6,6 +6,8 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_gfxPrimitives.h"
 #include "SDL/SDL_image.h"
+#include <sstream>
+#include <fstream>
 #define CW 100
 #define CH 50
 #define W1 20
@@ -63,6 +65,7 @@ RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
 	myVec.push_back(button5PNG);
 	myVec.push_back(button6PNG);
 	myVec.push_back(button7PNG);
+	exitInterface=0;
 	peopleOnRide=0;
 	maxPeopleOnRide=4;
 }
@@ -443,6 +446,8 @@ Button list:
 				cout << "Not Enough Stations" << endl;
 			}
 			break;
+		case 7:
+			exitInterface=1;
 		default:
 			break;
 	}
@@ -548,11 +553,38 @@ void RollerCoaster::parseDrag(Uint16 x,Uint16 y,int type){
 	}
 }
 
-void RollerCoaster::displayInterface(){
-	int done=0;
+void RollerCoaster::load(int xCo,int yCo){
+	track.clear();
+	string s = "Coasters/RollerCoaster";
+	ostringstream convert;
+	convert << xCo;
+	string stringxCo = convert.str();
+	ostringstream convert1;
+	convert1 << yCo;
+	string stringyCo = convert1.str();
+	s=s+stringxCo+stringyCo;
+	const char *fileName=s.c_str();
+	ifstream file (fileName);
+	if(file.is_open()){
+		int length;
+		file >> length;
+		for(int F=0;F<length;F++){
+			int trackT;
+			TrackPiece T;
+			file >> T.startX; 
+			file >> T.startY; 
+			file >> T.endX; 
+			file >> T.endY;
+			file >> T.trackType;
+			track.push_back(T);
+		}
+	}
+}
+
+void RollerCoaster::displayInterface(int xCo,int yCo){
 	drawCurrent();
 	SDL_Flip(screen);
-	while(done==0){
+	while(exitInterface==0){
 		SDL_Event test_event;
 		while(SDL_PollEvent(&test_event)){
 			Uint16 x = test_event.button.x;
@@ -566,7 +598,7 @@ void RollerCoaster::displayInterface(){
 						if(test_event.button.button==SDL_BUTTON_LEFT){
 							parseInfo(xd,yd);
 						}else{
-							done=1;
+							exitInterface=1;
 						}
 						break;
 					}
@@ -582,10 +614,32 @@ void RollerCoaster::displayInterface(){
 					}
 				default:
 					break;
-					done=1;
 			}
 		}
-	}					
-	SDL_Quit(); 
-
+	}
+	string s = "Coasters/RollerCoaster";
+	ostringstream convert;
+	convert << xCo;
+	string stringxCo = convert.str();
+	ostringstream convert1;
+	convert1 << yCo;
+	string stringyCo = convert1.str();
+	s=s+stringxCo+stringyCo;
+	const char *fileName=s.c_str();
+	ofstream file(fileName);
+	if(file.is_open()){
+		file << track.size();
+		for(vector<TrackPiece>::iterator it = track.begin();it!= track.end();it++){
+			file << it->startX;
+			file << " ";
+			file << it->startY;
+			file << " ";
+			file << it->endX;
+			file << " ";
+			file << it->endY;
+			file << " ";
+			file << it->trackType;
+		}
+		file.close();
+	}
 }

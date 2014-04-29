@@ -54,6 +54,7 @@ private:
 	vector<Uint16> clicks;
 	Rating rating;
 	string getName();
+	int exitInterface;
 	int selectTrack(double,double);
 	int addTrack(double,double,double,double);
 	int getRideEntranceFee();
@@ -75,6 +76,7 @@ private:
 public:
 	int worth;
 	RollerCoaster(SDL_Surface *,string);
-	void displayInterface();	
+	void load(int,int);
+	void displayInterface(int,int);	
 };
 #endif
