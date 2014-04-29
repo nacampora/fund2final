@@ -1,7 +1,7 @@
 all: main
 
 main: main.o RollerCoaster.o TrackPiece.o Rating.o Button.o Menu.o Cart.o Cart.h RollerCoaster.h TrackPiece.h Rating.h Button.h Menu.h
-	g++ RollerCoaster.o TrackPiece.o Rating.o main.cpp -lSDL -lSDL_gfx -lSDL_image -o main
+	g++ RollerCoaster.o TrackPiece.o Rating.o Button.o Menu.o Cart.o main.o -lSDL -lSDL_gfx -lSDL_image -o main
 RollerCoaster.o: RollerCoaster.cpp RollerCoaster.h
 	g++ -c RollerCoaster.cpp
 TrackPiece.o: TrackPiece.cpp TrackPiece.h
