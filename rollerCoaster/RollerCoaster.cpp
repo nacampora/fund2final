@@ -1,9 +1,5 @@
 #include "RollerCoaster.h"
 //#include "Finances.h"
-#include "Button.cpp"
-#include "Menu.cpp"
-#include "Cart.h"
-#include "Cart.cpp"
 #include <iostream>
 #include <string>
 #include <math.h>
