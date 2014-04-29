@@ -18,8 +18,9 @@ using namespace std;
 int windowHeight=500;
 
 //RollerCoaster::RollerCoaster(SDL_Surface *r,string s,Finances *F){
-RollerCoaster::RollerCoaster(SDL_Surface *r,string s){
+RollerCoaster::RollerCoaster(string s){
 //	F1=F;
+	SDL_Surface *r=SDL_SetVideoMode(1300,650,32,SDL_SWSURFACE);
 	nCarts=0;
 	rideEntranceFee=1;
 	trackAdd=1;		//Type of track you are using

@@ -75,7 +75,7 @@ private:
 	void play();
 public:
 	int worth;
-	RollerCoaster(SDL_Surface *,string);
+	RollerCoaster(string);
 	void load(int,int);
 	void displayInterface(int,int);	
 };
