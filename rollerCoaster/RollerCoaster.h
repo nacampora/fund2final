@@ -21,7 +21,10 @@ private:
 	SDL_Surface *backSky;
 	SDL_Surface *cartPNG;
 	SDL_Surface *highlightedTrackPNG;
-	SDL_Surface *trackPNG;
+	SDL_Surface *track1PNG;
+	SDL_Surface *track2PNG;
+	SDL_Surface *track3PNG;
+	SDL_Surface *track4PNG;
 	int PNGHheight;
 	int PNGheight;
 	SDL_Surface *menuBackPNG;
@@ -67,7 +70,8 @@ private:
 	void increaseRideEntranceFee();
 	void decreaseRideEntranceFee();
 	void checkPlace(Cart *);
-	void updateSpeed(Cart *,int,int);
+	int updateSpeed(Cart *,int,int);
+	int getBroken();
 	void parseTrackInfo(double,double,double,double,double,double);
 	void menuChanges(int);
 	void setName(string);
