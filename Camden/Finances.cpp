@@ -16,7 +16,7 @@ Finances::Finances() {
 	interestRate=.05;
 	currentLoan=1000;
 	maxLoan=20000;
-	rideEntranceFee=3;
+	rideEntranceFee=5;
 }
 
 int Finances::getBalance() {
