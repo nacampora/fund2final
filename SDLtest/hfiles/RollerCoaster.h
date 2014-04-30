@@ -15,7 +15,8 @@ using namespace std;
 
 class RollerCoaster{
 
-private:
+//private:
+public:
 	SDL_Surface *screen;
 	SDL_Surface *backG;
 	SDL_Surface *backSky;
@@ -53,6 +54,7 @@ private:
 	vector<TrackPiece> track;
 	vector<Uint16> clicks;
 	Rating rating;
+	public:
 	string getName();
 	int exitInterface;
 	int selectTrack(double,double);

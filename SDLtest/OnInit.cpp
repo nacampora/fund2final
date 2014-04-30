@@ -46,6 +46,10 @@ bool CApp::OnInit() {
     if((Surf_Begin = CSurface::OnLoad("loadscreen_img.png")) == NULL){
         return false;
     }
+    if( init() == false )
+    {
+        return 1;
+    }
 
     return true;
 }

@@ -5,6 +5,8 @@
 #include<vector>
 #include<iostream>
 #include "building.h"
+#include"Finances.h"
+#include"Time.h"
 
 using namespace std;
 //#include "person.h"//temporary name
@@ -26,6 +28,10 @@ class Park
         int get_menu();
         void set_menu(int);
         vector< vector<Building> > grid;
+        Finances F1;
+
+        Time T1;
+
     private:
 
         int menu;

@@ -23,6 +23,9 @@ void CApp::mainmenu(int mX,int mY)
     //if press red x button at top right of menu
     if((mX>x+320)&&mX<(x+345)&&mY>(y+10)&&mY<(y+34))
     {
+        SDL_FreeSurface( parkEntranceFeeText );
+        SDL_FreeSurface( currentLoanText );
+        SDL_FreeSurface( balanceText );
     //run through grid checking if any squares are higlighted
         for(int i=0;i<Pmap.get_Ygridsize();i++)
         {
@@ -48,19 +51,19 @@ void CApp::mainmenu(int mX,int mY)
     }//end of if(clicked on close menu button)
     else if(mX>x+313&&mX<x+340&&mY>y+53&&mY<y+68)
     {
-        //up1
+        Pmap.F1.increaseEntranceFee();
     }
     else if(mX>x+313&&mX<x+340&&mY>y+74&&mY<y+91)
     {
-        //down1
+        Pmap.F1.decreaseEntranceFee();
     }
     else if(mX>x+313&&mX<x+340&&mY>y+95&&mY<y+111)
     {
-        //up2
+        Pmap.F1.increaseLoan();
     }
     else if(mX>x+313&&mX<x+340&&mY>y+117&&mY<y+132)
     {
-        //down2
+        Pmap.F1.decreaseLoan();
     }
     else if(mX>x&&mX<x+106&&mY>y+213&&mY<y+316)
     {
@@ -114,36 +117,42 @@ int CApp::buymenu(int mX,int mY)
     {
         if(mX>0&&mX<37&&mY>0&&mY<37)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_bRoomY);
             Pmap.set_menu(1);
             return 1;
         }
         else if(mX>0&&mX<37&&mY>39&&mY<75)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_rideY);
             Pmap.set_menu(3);
             return 1;
         }
         else if(mX>0&&mX<37&&mY>79&&mY<114)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_vendorY);
             Pmap.set_menu(1);
             return 1;
         }
         else if(mX>42&&mX<77&&mY>0&&mY<37)
         {
+            Pmap.F1.sellShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_grassY);
             Pmap.set_menu(1);
             return 1;
         }
         else if(mX>42&&mX<77&&mY>39&&mY<75)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_pathY);
             Pmap.set_menu(1);
             return 1;
         }
         else if(mX>42&&mX<77&&mY>79&&mY<114)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_shopY);
             Pmap.set_menu(1);
             return 1;
@@ -153,36 +162,42 @@ int CApp::buymenu(int mX,int mY)
     {
         if(mX>Pmap.get_Xgridsize()*50-130&&mX<Pmap.get_Xgridsize()*50-130+37&&mY>0&&mY<37)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_bRoomY);
             Pmap.set_menu(2);
             return 1;
         }
         else if(mX>Pmap.get_Xgridsize()*50-130&&mX<Pmap.get_Xgridsize()*50-130+37&&mY>39&&mY<75)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_rideY);
             Pmap.set_menu(4);
             return 1;
         }
         else if(mX>Pmap.get_Xgridsize()*50-130&&mX<Pmap.get_Xgridsize()*50-130+37&&mY>79&&mY<114)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_vendorY);
             Pmap.set_menu(2);
             return 1;
         }
         else if(mX>Pmap.get_Xgridsize()*50-130+42&&mX<Pmap.get_Xgridsize()*50-130+77&&mY>0&&mY<37)
         {
+            Pmap.F1.sellShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_grassY);
             Pmap.set_menu(2);
             return 1;
         }
         else if(mX>Pmap.get_Xgridsize()*50-130+42&&mX<Pmap.get_Xgridsize()*50-130+77&&mY>39&&mY<75)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_pathY);
             Pmap.set_menu(2);
             return 1;
         }
         else if(mX>Pmap.get_Xgridsize()*50-130+42&&mX<Pmap.get_Xgridsize()*50-130+77&&mY>79&&mY<114)
         {
+            Pmap.F1.buyShop();
             Pmap.grid[ySquare][xSquare].set_property(Pmap.grid[ySquare][xSquare].enum_shopY);
             Pmap.set_menu(2);
             return 1;
@@ -222,6 +237,19 @@ void CApp::coastermenu(int mX,int mY)
     }
 
 
+}
+
+void CApp::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL )
+{
+    //Holds offsets
+    SDL_Rect offset;
+
+    //Get offsets
+    offset.x = x;
+    offset.y = y;
+
+    //Blit
+    SDL_BlitSurface( source, clip, destination, &offset );
 }
 
 void CApp::OnLButtonDown(int mX, int mY) {
@@ -276,7 +304,12 @@ void CApp::OnLButtonDown(int mX, int mY) {
 
         else if(((mX>((Pmap.get_Xgridsize()*50)-25))&&mY<25)&&Pmap.get_menu()!=5)//if clicked on open main menu icon (top right corner of screen)//if main menu is not open
         {
+            prep_finances();
             Pmap.set_menu(5);//open main menu
+            apply_surface( ((Pmap.get_Xgridsize()*50)/2)-(355/2)+222, (((Pmap.get_Ygridsize()*50)/2)-318/2)+57, parkEntranceFeeText, Surf_Display );
+            apply_surface( ((Pmap.get_Xgridsize()*50)/2)-(355/2)+222, (((Pmap.get_Ygridsize()*50)/2)-318/2)+100, currentLoanText, Surf_Display );
+            apply_surface( ((Pmap.get_Xgridsize()*50)/2)-(355/2)+222, (((Pmap.get_Ygridsize()*50)/2)-318/2)+141, balanceText,Surf_Display );
+            //apply_surface( 100, 400, dateText, Surf_Display );
         }
         else if(Pmap.get_menu()!=5)//as long as main menu isnt open, allow clicking on other parts of screen
         {
@@ -349,7 +382,7 @@ void CApp::OnLButtonDown(int mX, int mY) {
     }//end of else referring to being in top down view of park
 }
 
-void CApp::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode)
+/*void CApp::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode)
 {
     if(Pmap.get_menu()==5)
     {
@@ -444,7 +477,7 @@ void CApp::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode)
                 break;
 
                 case SDLK_2:
-                    /*OnKeyDown(SDLKey sym_2, SDLMod mod_2, Uint16 unicode_2)
+                    OnKeyDown(SDLKey sym_2, SDLMod mod_2, Uint16 unicode_2)
                     {
                         switch(sym_2)
                         {
@@ -460,7 +493,7 @@ void CApp::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode)
 
                             break;
                         }
-                    }*/
+                    }
 
                     Pmap.grid[y][x].set_property(Pmap.grid[0][0].enum_pathY);
 
@@ -520,4 +553,27 @@ void CApp::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode)
             }
         }
     }
+}*/
+
+void CApp::prep_finances()
+{
+    SDL_Color textColor = { 0, 0, 0 };
+    TTF_Font *font = NULL;
+    int parkEntranceFeeInt = Pmap.F1.getParkEntranceFee();
+    ostringstream convert1;
+    convert1 << parkEntranceFeeInt;
+    string str1 = convert1.str();
+    const char * parkEntranceFee = str1.c_str();
+
+    int currentLoanInt = Pmap.F1.getCurrentLoan();
+    ostringstream convert2;
+    convert2 << currentLoanInt;
+    string str2 = convert2.str();
+    const char * currentLoan = str2.c_str();
+
+    int balanceInt = Pmap.F1.getBalance();
+    ostringstream convert3;
+    convert3 << balanceInt;
+    string str3 = convert3.str();
+    const char * balance = str3.c_str();
 }

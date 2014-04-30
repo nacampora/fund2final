@@ -2,19 +2,26 @@
 1395005099 source:d:\nick\documents\college\sophomore\fund2final\sdltest\try.c
 	"SDL/SDL.h"
 
-1398692286 source:d:\nick\documents\college\sophomore\fund2final\sdltest\capp.cpp
+1398821101 source:d:\nick\documents\college\sophomore\fund2final\sdltest\capp.cpp
 	"CApp.h"
 
-1398699722 d:\nick\documents\college\sophomore\fund2final\sdltest\capp.h
+1398820193 d:\nick\documents\college\sophomore\fund2final\sdltest\capp.h
 	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"SDL/SDL_ttf.h"
 	"CEvent.h"
 	"CSurface.h"
 	"hfiles/Park.h"
+	"hfiles/Finances.h"
+	"hfiles/Time.h"
+	<iostream>
+	<string>
+	<sstream>
 
-1398668667 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oncleanup.cpp
+1398814594 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oncleanup.cpp
 	"CApp.h"
 
-1398739513 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onevent.cpp
+1398821534 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onevent.cpp
 	"CApp.h"
 	<math.h>
 	<fstream>
@@ -24,7 +31,7 @@
 	<sys/stat.h>
 	<dirent.h>
 
-1398699053 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oninit.cpp
+1398814628 source:d:\nick\documents\college\sophomore\fund2final\sdltest\oninit.cpp
 	"CApp.h"
 
 1395005504 source:d:\nick\documents\college\sophomore\fund2final\sdltest\onloop.cpp
@@ -47,17 +54,19 @@
 1395085582 source:d:\nick\documents\college\sophomore\fund2final\sdltest\cevent.cpp
 	"CEvent.h"
 
-1398668667 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\park.h
+1398820223 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\park.h
 	<math.h>
 	<vector>
 	<iostream>
 	"building.h"
+	"Finances.h"
+	"Time.h"
 
 1398668665 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\gridsquare.h
 	"building.h"
 	<string>
 
-1398735577 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\building.h
+1398812133 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\building.h
 	"shop.h"
 	"bRoom.h"
 	"vendor.h"
@@ -145,7 +154,7 @@
 	<vector>
 	"SDL/SDL.h"
 
-1398705548 source:d:\nick\documents\college\sophomore\fund2final\sdltest\button.cpp
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\button.cpp
 	<iostream>
 	"hfiles/Button.h"
 	"SDL/SDL.h"
@@ -154,7 +163,7 @@
 	<stdlib.h>
 	<sstream>
 
-1398737738 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\rollercoaster.h
+1398816800 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\rollercoaster.h
 	<iostream>
 	"Rating.h"
 	"TrackPiece.h"
@@ -165,35 +174,35 @@
 	<vector>
 	"SDL/SDL.h"
 
-1398668658 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\rating.h
+1398812133 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\rating.h
 	<iostream>
 
-1398694641 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\trackpiece.h
-	<iostream>
-	"SDL/SDL.h"
-
-1398668657 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\button.h
+1398812133 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\trackpiece.h
 	<iostream>
 	"SDL/SDL.h"
 
-1398668658 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\menu.h
+1398812133 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\button.h
+	<iostream>
+	"SDL/SDL.h"
+
+1398812133 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\menu.h
 	<iostream>
 	"Button.h"
 	<vector>
 
-1398668657 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\cart.h
+1398812133 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\cart.h
 	<iostream>
 	<vector>
 	"SDL/SDL.h"
 
-1398699747 source:d:\nick\documents\college\sophomore\fund2final\sdltest\cart.cpp
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\cart.cpp
 	"hfiles/Cart.h"
 	<iostream>
 	"SDL/SDL.h"
 	<math.h>
 	"SDL/SDL_rotozoom.h"
 
-1398704755 source:d:\nick\documents\college\sophomore\fund2final\sdltest\menu.cpp
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\menu.cpp
 	<iostream>
 	"hfiles/Menu.h"
 	"SDL/SDL.h"
@@ -201,11 +210,11 @@
 	"SDL/SDL_image.h"
 	<vector>
 
-1398705237 source:d:\nick\documents\college\sophomore\fund2final\sdltest\rating.cpp
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\rating.cpp
 	<iostream>
 	"hfiles/Rating.h"
 
-1398740156 source:d:\nick\documents\college\sophomore\fund2final\sdltest\rollercoaster.cpp
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\rollercoaster.cpp
 	"hfiles\RollerCoaster.h"
 	<iostream>
 	<string>
@@ -240,10 +249,10 @@
 	<math.h>
 	"SDL/SDL_rotozoom.h"
 
-1398705371 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_gfxblitfunc.c
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_gfxblitfunc.c
 	"SDL/SDL_gfxBlitFunc.h"
 
-1398705397 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_gfxprimitives.c
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_gfxprimitives.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -255,7 +264,7 @@
 	<emmintrin.h>
 	<armintr.h>
 
-1398705414 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_imagefilter.c
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_imagefilter.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -263,17 +272,70 @@
 	<SDL/SDL_cpuinfo.h>
 	"SDL/SDL_imageFilter.h"
 
-1398705421 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_rotozoom.c
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_rotozoom.c
 	<windows.h>
 	<stdlib.h>
 	<string.h>
 	"SDL/SDL_rotozoom.h"
 
-1398705430 source:d:\nick\documents\college\sophomore\fund2final\sdltest\trackpiece.cpp
+1398812133 source:d:\nick\documents\college\sophomore\fund2final\sdltest\trackpiece.cpp
 	<iostream>
 	"SDL/SDL.h"
 	"SDL/SDL_gfxPrimitives.h"
 	"SDL/SDL_image.h"
 	"SDL/SDL_rotozoom.h"
 	"hfiles/TrackPiece.h"
+
+1398816511 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\finances.h
+	<iostream>
+	"SDL/SDL.h"
+	<time.h>
+	"RollerCoaster.h"
+
+1398818422 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\time.h
+	<iostream>
+	"SDL/SDL.h"
+
+1398816452 source:d:\nick\documents\college\sophomore\fund2final\sdltest\finances.cpp
+	<iostream>
+	"SDL/SDL.h"
+	"hfiles/Finances.h"
+
+1398818511 source:d:\nick\documents\college\sophomore\fund2final\sdltest\glfont.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"SDL/SDL.h"
+	"SDL/SDL_ttf.h"
+	"SDL_opengl.h"
+
+1398816708 source:d:\nick\documents\college\sophomore\fund2final\sdltest\people.cpp
+	<iostream>
+	"SDL/SDL.h"
+	"hfiles/People.h"
+	"hfiles/RollerCoaster.h"
+	"hfiles/Finances.h"
+
+1398734028 d:\nick\documents\college\sophomore\fund2final\sdltest\hfiles\people.h
+	<iostream>
+	"SDL/SDL.h"
+	"RollerCoaster.h"
+	"Finances.h"
+
+1398816863 source:d:\nick\documents\college\sophomore\fund2final\sdltest\sdl_ttf.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ft2build.h>
+	"SDL/SDL.h"
+	"SDL/SDL_endian.h"
+	"SDL/SDL_ttf.h"
+	<freetype/fterrors.h>
+
+1398818467 source:d:\nick\documents\college\sophomore\fund2final\sdltest\time.cpp
+	<iostream>
+	<iomanip>
+	"hfiles/Time.h"
+	<sstream>
 

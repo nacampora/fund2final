@@ -10,11 +10,19 @@
     #define _CAPP_H_
 
 #include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+#include "SDL/SDL_ttf.h"
 
 #include "CEvent.h"
 #include "CSurface.h"
 
 #include "hfiles/Park.h"
+#include "hfiles/Finances.h"
+#include "hfiles/Time.h"
+
+#include<iostream>
+#include<string>
+#include <sstream>
 
 class CApp : public CEvent {
     private:
@@ -39,13 +47,28 @@ class CApp : public CEvent {
         SDL_Surface*    Surf_MMenu;//menu displays when main menu icon is pressed
         SDL_Surface*    Surf_Gear;//icon to press to display main menu
         SDL_Surface*    Surf_Begin;//load and new game opening screen of game
+        SDL_Surface*    parkEntranceFeeText;
+        SDL_Surface*    currentLoanText;
+        SDL_Surface*    balanceText;
+        SDL_Surface*    dateText;
+        TTF_Font*       font;
+
+
+
+
     public:
         CApp();//constructor initializes all SDL surfaces and the "bool running" variable
 
         int OnExecute();//contains while loop which contains functions for all main parts of game
 
+        bool load_files();
+        bool init();
+        void apply_surface( int, int, SDL_Surface* , SDL_Surface* , SDL_Rect* );
+        SDL_Surface *load_image( std::string );
+
     public:
         Park Pmap;//second level class that conatins variables and functions that control the top down view of the park
+
 
 
 
@@ -57,6 +80,7 @@ class CApp : public CEvent {
                 void mainmenu(int,int);
                 int buymenu(int,int);
                 void coastermenu(int,int);
+                void prep_finances();
             void OnKeyDown(SDLKey, SDLMod, Uint16);//when keyboard input is provided, controls game response based on key pressed
             void OnExit();//when red x button is pressed, removes sdl spaces from memory and exits
 

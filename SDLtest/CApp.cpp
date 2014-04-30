@@ -24,6 +24,11 @@ CApp::CApp() {
     Surf_MMenu = NULL;//menu displays when main menu icon is pressed
     Surf_Gear = NULL;//icon to press to display main menu
     Surf_Begin = NULL;//load and new game opening screen of game
+    parkEntranceFeeText = NULL;
+    currentLoanText = NULL;
+    balanceText = NULL;
+    dateText = NULL;
+    font = NULL;
 
     Running = true;//initializes game to running
     Begin = false;//initializes game to start on Surf_Begin
@@ -62,4 +67,93 @@ int main(int argc, char* argv[]) {
     CApp theApp;
 
     return theApp.OnExecute();//calls function to begin game and loop until game is finished
+}
+
+SDL_Surface* CApp:: load_image( std::string filename )
+{
+    //The image that's loaded
+    SDL_Surface* loadedImage = NULL;
+
+    //The optimized surface that will be used
+    SDL_Surface* optimizedImage = NULL;
+
+    //Load the image
+    loadedImage = IMG_Load( filename.c_str() );
+
+    //If the image loaded
+    if( loadedImage != NULL )
+    {
+        //Create an optimized surface
+        optimizedImage = SDL_DisplayFormat( loadedImage );
+
+        //Free the old surface
+        SDL_FreeSurface( loadedImage );
+
+        //If the surface was optimized
+        if( optimizedImage != NULL )
+        {
+            //Color key surface
+            SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, SDL_MapRGB( optimizedImage->format, 0, 0xFF, 0xFF ) );
+        }
+    }
+
+    //Return the optimized surface
+    return optimizedImage;
+}
+
+
+
+bool CApp::init()
+{
+    //Initialize all SDL subsystems
+    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 )
+    {
+        return false;
+    }
+
+    //Set up the screen
+    //screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+
+    //If there was an error in setting up the screen
+    /*if( screen == NULL )
+    {
+        return false;
+    }*/
+
+    //Initialize SDL_ttf
+    if( TTF_Init() == -1 )
+    {
+        return false;
+    }
+
+    //Set the window caption
+    //SDL_WM_SetCaption( "Finances", NULL );
+
+    //If everything initialized fine
+    return true;
+}
+
+bool CApp::load_files()
+{
+    //Load the background image
+    //image = load_image( "Finances.png" );
+    //background = load_image( "sky.JPG" );
+
+    //Open the font
+    font = TTF_OpenFont( "arial.ttf", 28 );
+
+    //If there was a problem in loading the background
+    /*if( background == NULL )
+    {
+        return false;
+    }*/
+
+    //If there was an error in loading the font
+    if( font == NULL )
+    {
+        return false;
+    }
+
+    //If everything loaded fine
+    return true;
 }
