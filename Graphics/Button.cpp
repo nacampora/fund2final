@@ -1,3 +1,4 @@
+//Button Class Member Functions
 
 #include <iostream>
 using namespace std;
@@ -10,22 +11,22 @@ using namespace std;
 #include <stdlib.h>
 #include <sstream>
 Button::Button(double x,double y,int s){
-	cornerX=x;
-	cornerY=y;
+	cornerX=x;	
+	cornerY=y;	//places the button and sets its variables
 	size=s;
 	checked=0;
 }
 
 void Button::toggle(){
 	if(checked==0){
-		checked=1;
+		checked=1;		//changes state of checked
 	}else{
 		checked=0;
 	}
 }
 
+
 void Button::draw(SDL_Surface *s,int buttonNum){
-	rectangleRGBA(s,cornerX,cornerY,cornerX+size,cornerY+size,255,255,255,255);
 	SDL_Surface *button;
 	string r="buttons/button";
 	string w=".png";
@@ -34,15 +35,12 @@ void Button::draw(SDL_Surface *s,int buttonNum){
 	string str=ss.str();
 	string tot = r+str+w;
 	button=IMG_Load("tot");
-	SDL_Rect offset;
-	offset.x=cornerX;
-	offset.y=cornerY;
+	SDL_Rect offset;							//This function draws the buttons
+	offset.x=cornerX;							//It is not used because the menu
+	offset.y=cornerY;							//draws the buttons
 	SDL_BlitSurface(button,NULL,s,NULL); 
-	if(checked==1){
-		lineRGBA(s,cornerX,cornerY,cornerX+size,cornerY+size,255,255,255,255);
-		lineRGBA(s,cornerX+size,cornerY,cornerX,cornerY+size,255,255,255,255);
-	}	
 }
+
 
 int Button::getSize(){
 	return size;

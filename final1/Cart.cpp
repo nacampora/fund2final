@@ -1,7 +1,7 @@
 #include "Cart.h"
 #include <iostream>
 #include "SDL/SDL.h"
-//#include "SDL/SDL_gfxPrimitives.h"
+#include "SDL/SDL_gfxPrimitives.h"
 #include <math.h>
 #include "SDL/SDL_rotozoom.h"
 using namespace std;
@@ -13,7 +13,7 @@ Cart::Cart(double x1,double y1,int w,int l,SDL_Surface *s){
 	distTrack=0;
 	currTrack=0;
 	fwCurrTrack=0;
-	swCurrTrack=0;
+	swCurrTrack=0;		//Initialize all the variables
 	hertz = 20;
 	width=w;
 	length=l;
@@ -27,7 +27,7 @@ Cart::Cart(double x1,double y1,int w,int l,SDL_Surface *s){
 	ppm=1;
 }
 
-void Cart::increment(){
+void Cart::increment(){			//update the cart position based on the speed
 	angle+=angleSpeed/hertz;
 	x+=ppm*speed*cos(direction);
 	y-=ppm*speed*sin(direction);
@@ -44,9 +44,9 @@ void Cart::draw(int Ox,int Oy,SDL_Surface *s,SDL_Surface *cartPNG){
 	offset.y=y-length*cos(angle)/2+width*sin(angle)/2;
 	if(angle>0 && angle<M_PI/2){
 		offset.y-=width*sin(angle);
-	}else if(angle>=M_PI/2 && angle<M_PI){
-		offset.y-=2*length*cos(angle-M_PI/2);
-		offset.y-=width*sin(angle-M_PI/2)/2;
+	}else if(angle>=M_PI/2 && angle<M_PI){			//This if statement controls the position of the Cart based on the angle of rotation,
+		offset.y-=2*length*cos(angle-M_PI/2);		//corrections needed to be made because the rotate functino is terrible
+		offset.y-=width*sin(angle-M_PI/2)/2;		
 		offset.x-=2*length*sin(angle-M_PI/2);
 	}else if(angle>=M_PI && angle < M_PI*3/2){
 		offset.x-=2*length*cos(angle-M_PI);
@@ -62,8 +62,8 @@ void Cart::draw(int Ox,int Oy,SDL_Surface *s,SDL_Surface *cartPNG){
 		offset.x+=8*cos(angle+M_PI/2);
 		offset.y-=8*sin(angle+M_PI/2);
 	}
-	SDL_Surface *rotatedImg=rotozoomSurface(cartPNG,angle*360/(2*M_PI),1.0,0);
-	SDL_BlitSurface(rotatedImg,NULL,s,&offset);
+	SDL_Surface *rotatedImg=rotozoomSurface(cartPNG,angle*360/(2*M_PI),1.0,0);		//this is the rotate function
+	SDL_BlitSurface(rotatedImg,NULL,s,&offset);		//These four lines draw the outline of the cart. used for debugging only
 /*	lineRGBA(screen,x-length*sin(angle)/2-width*cos(angle)/2,y-length*cos(angle)/2+width*sin(angle)/2,x-length*sin(angle)/2+width*cos(angle)/2,y-length*cos(angle)/2-width*sin(angle)/2,255,255,255,255);
 	lineRGBA(screen,x-length*sin(angle)/2+width*cos(angle)/2,y-length*cos(angle)/2-width*sin(angle)/2,x+length*sin(angle)/2+width*cos(angle)/2,y+length*cos(angle)/2-width*sin(angle)/2,255,255,255,255);
 	lineRGBA(screen,x+length*sin(angle)/2+width*cos(angle)/2,y+length*cos(angle)/2-width*sin(angle)/2,x+length*sin(angle)/2-width*cos(angle)/2,y+length*cos(angle)/2+width*sin(angle)/2,255,255,255,255);

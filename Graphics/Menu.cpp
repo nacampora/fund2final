@@ -26,7 +26,7 @@ Menu::Menu(SDL_Surface *screen,double X,double Y,int nButtons,int buttonS){
 		row--;
 	}
 	rect.push_back(x);
-	rect.push_back(y);
+	rect.push_back(y);		//rect controls the rectanle of space the menu takes up
 	rect.push_back(x+(col+1)*buttonS/2 + col*buttonS);
 	rect.push_back(y+(row+1)*buttonS/2 + row*buttonS);
 }
@@ -56,7 +56,7 @@ int Menu::isInsideBox(double x1,double y1,double x2,double y2, double x, double 
 
 vector<double> Menu::findPlace(int element,int total){
 	int col=0;
-	while(col*col*ratio<=total-1){
+	while(col*col*ratio<=total-1){		//this function finds where exactly a button n should be 
 		col++;
 	}
 	int column = (element) % col;
@@ -64,7 +64,7 @@ vector<double> Menu::findPlace(int element,int total){
 	double y1 = y + (row+1)*(buttonSize/2) + (row)*buttonSize;
 	double x1 = x + (column+1)*(buttonSize/2) + (column)*buttonSize;
 	vector<double> point;
-	point.push_back(x1);
+	point.push_back(x1);		//this is the point
 	point.push_back(y1);
 	return point;
 }
@@ -76,7 +76,7 @@ vector<double> Menu::menuBox(){
 void Menu::addButton(){
 	Button button(0,0,buttonSize);
 	b.push_back(button);
-	vector<double> point;
+	vector<double> point;		//finds where to put the button and then puts it there
 	int s = b.size(),count=0;
 	for(vector<Button>::iterator it=b.begin(); it!=b.end(); it++){
 		point = findPlace(count,s);
@@ -95,14 +95,14 @@ void Menu::draw(SDL_Surface *screen,vector<SDL_Surface *> background){
 	rec.x=rec.y=0;
 	rec.w=(rect[2]-rect[0]);
 	rec.h=(rect[3]-rect[1]);
-//	SDL_BlitSurface(background[0],&rec,screen,&offset);
+//	SDL_BlitSurface(background[0],&rec,screen,&offset);		//can add a backround to the menu, but we decided to keep it without one.
 	int count = 0;
 	for(vector<Button>::iterator it=b.begin(); it!=b.end(); it++){
 		count++;
-		offset.x=it->cornerX;
+		offset.x=it->cornerX;		//draws all the buttons based on the PNGs sent in via the vector of SDL_Surfaces.
 		offset.y=it->cornerY;
 		if(it->getState()==1){
-			SDL_BlitSurface(background[0],NULL,screen,&offset);
+			SDL_BlitSurface(background[0],NULL,screen,&offset);	//draws a white background behind the button if it is pressed
 		}
 		SDL_BlitSurface(background[count],NULL,screen,&offset);
 //		it->draw(screen,count);
@@ -113,24 +113,24 @@ void Menu::move(double x1,double y1){
 	double changeX=x1-x;
 	double changeY=y1-y;
 	rect[0]=rect[0]+changeX;
-	rect[1]=rect[1]+changeY;
+	rect[1]=rect[1]+changeY;		//Move the menu... Never used in this project
 	rect[2]=rect[2]+changeX;
 	rect[3]=rect[3]+changeY;
 	x=x1;
 	y=y1;
 	for(vector<Button>::iterator it=b.begin(); it!=b.end(); it++){
-		it->move((it->cornerX)+changeX,(it->cornerY)+changeY);		
-	}	
+		it->move((it->cornerX)+changeX,(it->cornerY)+changeY);	
+	}
 }
 
 int Menu::buttonClicked(double x1,double y1){
 	if(isInsideBox(rect[0],rect[1],rect[2],rect[3],x1,y1)==0){
-		return -2;
+		return -2;						//if the click is outside menu box return -1
 	}else{
 		for(int F=0;F<b.size();F++){
 			vector<double> pos = findPlace(F,b.size());
 			if(isInsideBox(pos[0],pos[1],pos[0]+buttonSize,pos[1]+buttonSize,x1,y1)==1)
-				return F;
+				return F;								//return button pressed
 		}
 		return -1;
 	}

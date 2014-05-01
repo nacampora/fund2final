@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "SDL/SDL.h"
-//#include "SDL/SDL_gfxPrimitives.h"
+#include "SDL/SDL_gfxPrimitives.h"
 using namespace std;
 
 class TrackPiece{

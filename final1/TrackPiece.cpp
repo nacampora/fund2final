@@ -28,7 +28,7 @@ double TrackPiece::findAngle(){
 	double xdist=endX-startX;
 	double ydist=startY-endY;
 	if(xdist>=0 && ydist>=0){
-		ang=asin(ydist/d);
+		ang=asin(ydist/d);		//important function because it tells the angle of the track. (0 - M_PI/2)
 	}else if(xdist<0 && ydist>=0){
 		ang=(M_PI/2)-asin(ydist/d)+M_PI/2;
 	}else if(xdist<0 && ydist<0){
@@ -43,7 +43,7 @@ double TrackPiece::findAngle(){
 
 void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offsetY,int PNGheight){
 	if(startY>height){
-		startY=startY-65535;
+		startY=startY-65535;		//fixes problem with unsigned int wrap around draw track
 	}
 	if(endY>height){
 		endY=endY-65535;
@@ -55,8 +55,8 @@ void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offset
 	int nPieces=(int)(d/base);
 	double left = d-nPieces*base;
 	double ang=findAngle();
-	if(ang>0 && ang<M_PI/2){
-		offset.y-=base*sin(ang);
+	if(ang>0 && ang<M_PI/2){				//Because the rotate function for images is wierd we have to fix the offset of the image
+		offset.y-=base*sin(ang);			//based on the angle
 	}else if(ang>=M_PI/2 && ang<M_PI){
 		offset.x-=base*sin(ang-M_PI/2);
 		offset.y-=base*cos(ang-M_PI/2);
@@ -78,7 +78,7 @@ void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offset
 	double ix=offset.x;
 	double iy=offset.y;
 	for(int F=1;F<=nPieces;F++){
-		SDL_Surface *rotatedImg=rotozoomSurface(tr,ang*360/(2*M_PI),1.0,0);
+		SDL_Surface *rotatedImg=rotozoomSurface(tr,ang*360/(2*M_PI),1.0,0);		//splits the piece up into 15 pixel portions because we have 15 pixel images.
 		if(offset.x>0 && offset.x<width && offset.y>0 && offset.y < height){
 			SDL_BlitSurface(rotatedImg,NULL,s,&offset);
 		}
@@ -96,6 +96,6 @@ void TrackPiece::drawPiece(SDL_Surface *s,SDL_Surface *tr,int offsetX,int offset
 	if(offset.x>0 && offset.x<width && offset.y>0 && offset.y < height){
 		SDL_BlitSurface(rotatedImg,NULL,s,&offset);
 	}
-//	lineRGBA(s,startX-offsetX,startY+offsetY,endX-offsetX,endY-offsetY,255,255,255,255);
-
+//	lineRGBA(s,startX-offsetX,startY+offsetY,endX-offsetX,endY-offsetY,255,255,255,255);	
+	
 }

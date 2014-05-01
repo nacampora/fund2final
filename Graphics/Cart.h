@@ -1,3 +1,8 @@
+//Cart Class
+//
+//This is the actual RollerCoaster car that is drawn to the screen.
+//
+
 #ifndef CART_H
 #define CART_H
 
@@ -20,7 +25,7 @@ class Cart{
 		void increment();
 		void draw(int, int,SDL_Surface *,SDL_Surface *);
 		int currTrack;
-		double distTrack;
+		double distTrack;		//These are the current track, and distance along the tracks of the cart, and each of the wheels.
 		int fwCurrTrack;
 		double fwDistTrack;
 		int swCurrTrack;
