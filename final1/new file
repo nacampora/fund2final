@@ -1,0 +1,54 @@
+all: main
+
+main: CApp.o: RollerCoaster.cpp TrackPiece.cpp Rating.cpp Button.cpp Menu.cpp Cart.cpp BRoom.cpp Building.cpp CApp.cpp CEvent.cpp CSurface.cpp Finances.cpp OnCleanup.cpp OnEvent.cpp OnInit.cpp OnLoop.cpp OnRender.cpp Park.cpp People.cpp Ride.cpp Shop.cpp Time.cpp Vendor.cpp hfiles/bRoom.h hfiles/building.h hfiles/Finances.h hfiles/Park.h hfiles/People.h hfiles/ride.h hfiles/shop.h hfiles/Time.h hfiles/vendor.h hfiles/Cart.h hfiles/RollerCoaster.h hfiles/TrackPiece.h hfiles/Rating.h hfiles/Button.h hfiles/Menu.h CApp.h CEvent.h CSurface.h SDL_image.h
+	g++ RollerCoaster.o TrackPiece.o Rating.o Button.o Menu.o Cart.o main.o BRoom.o Building.o CApp.o CEvent.o CSurface.o Finances.o gridSquare.o OnCleanup.o OnEvent.o OnInit.o OnLoop.o OnRender.o  Park.o People.o Ride.o Shop.o Time.o Vendor.o -lSDL -lSDL_gfx -lSDL_image -lSDL_ttf -o main
+CApp.o: RollerCoaster.cpp TrackPiece.cpp Rating.cpp Button.cpp Menu.cpp Cart.cpp BRoom.cpp Building.cpp CApp.cpp CEvent.cpp CSurface.cpp Finances.cpp OnCleanup.cpp OnEvent.cpp OnInit.cpp OnLoop.cpp OnRender.cpp Park.cpp People.cpp Ride.cpp Shop.cpp Time.cpp Vendor.cpp hfiles/bRoom.h hfiles/building.h hfiles/Finances.h hfiles/Park.h hfiles/People.h hfiles/ride.h hfiles/shop.h hfiles/Time.h hfiles/vendor.h hfiles/Cart.h hfiles/RollerCoaster.h hfiles/TrackPiece.h hfiles/Rating.h hfiles/Button.h hfiles/Menu.h CApp.h CEvent.h CSurface.h SDL_image.h
+	g++ -c Capp.cpp
+BRoom.o: BRoom.cpp hfiles/bRoom.h
+	g++ -c BRoom.cpp
+Building: Building.cpp hfiles/building.h
+	g++ -c Building.cpp
+CEvent.o: CEvent.cpp CApp.h CEvent.h
+	g++ -c CEvent.cpp
+CSurface.o: CSurface.cpp CSurface.h CApp.h
+	g++ -c CSurface.cpp
+Finances.o: Finances.cpp hfiles/Finances.h Time.cpp hfiles/Time.h
+	g++ -c Finances.cpp
+OnCleanup.o: OnCleanup.cpp
+	g++ -c OnCleanup.cpp
+OnEvent.o: OnEvent.cpp Finances.cpp hfiles/Finances.h RollerCoaster.cpp TrackPiece.cpp Rating.cpp Button.cpp Menu.cpp Cart.cpp BRoom.cpp Building.cpp CEvent.cpp CSurface.cpp Park.cpp People.cpp Ride.cpp Shop.cpp Time.cpp Vendor.cpp hfiles/bRoom.h hfiles/building.h hfiles/Park.h hfiles/People.h hfiles/ride.h hfiles/shop.h hfiles/Time.h hfiles/vendor.h hfiles/Cart.h hfiles/RollerCoaster.h hfiles/TrackPiece.h hfiles/Rating.h hfiles/Button.h hfiles/Menu.h CApp.h CEvent.h CSurface.h SDL_image.h
+	g++ -c OnEvent.cpp
+OnInit.o:OnInit.cpp
+	g++ -c OnInit.cpp
+OnLoop.o: OnLoop.cpp
+	g++ -c OnLoop.cpp
+OnRender.o: OnRender.cpp
+	g++ -c OnRender.cpp
+Park.o: Park.cpp hfiles/Park.h RollerCoaster.cpp TrackPiece.cpp Rating.cpp Button.cpp Menu.cpp Cart.cpp BRoom.cpp Building.cpp CApp.cpp CEvent.cpp CSurface.cpp Finances.cpp OnCleanup.cpp OnEvent.cpp People.cpp Ride.cpp Shop.cpp Time.cpp Vendor.cpp hfiles/bRoom.h hfiles/building.h hfiles/Finances.h hfiles/People.h hfiles/ride.h hfiles/shop.h hfiles/Time.h hfiles/vendor.h hfiles/Cart.h hfiles/RollerCoaster.h hfiles/TrackPiece.h hfiles/Rating.h hfiles/Button.h hfiles/Menu.h
+	g++ -c Park.cpp
+People.o: People.cpp hfiles/People.h
+	g++ -c People.cpp
+Ride.o: Ride.cpp hfiles/ride.h
+	g++ -c Ride.cpp
+Shop.o: Shop.cpp hfiles/shop.h
+	g++ -c Shop.cpp
+Time.o: Time.cpp hfiles/Time.h
+	g++ -c Time.cpp
+Vendor.o: Vendor.cpp hfiles/vendor.h
+	g++ -c Vendor.cpp
+RollerCoaster.o: RollerCoaster.cpp hfiles/RollerCoaster.h hfiles/People.h hfiles/Cart.h hfiles/TrackPiece.h hfiles/Rating.h hfiles/Button.h hfiles/Menu.h
+	g++ -c RollerCoaster.cpp
+TrackPiece.o: TrackPiece.cpp hfiles/TrackPiece.h
+	g++ -c TrackPiece.cpp
+Rating.o: Rating.cpp hfiles/Rating.h
+	g++ -c Rating.cpp
+Button.o: Button.cpp hfiles/Button.h
+	g++ -c Button.cpp
+Menu.o: Menu.cpp hfiles/Menu.h
+	g++ -c Menu.cpp
+Cart.o: Cart.cpp hfiles/Cart.h
+	g++ -c Cart.cpp
+
+clean:
+	rm -f *.o main
+
